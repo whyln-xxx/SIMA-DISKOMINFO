@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Laravel Presensi
 
 Laravel Presensi is a website designed to digitally record employee attendance by utilizing GPS and location tracking. This allows companies to monitor employee attendance accurately, ensuring that the attendance data aligns with the employee's physical location. This feature makes the attendance process more efficient and transparent.
@@ -101,3 +102,7 @@ Follow the steps below to clone and run the project in your local environment:
 &nbsp;&nbsp;&nbsp;
 <img src="https://github.com/user-attachments/assets/cd5b7067-6286-4254-a82a-fa67acfce39b" alt="Halaman Administrasi Izin Karyawan" width="" />
 <br><br>
+=======
+# SIMA-DISKOMINFO
+SIMA V2
+>>>>>>> d47be7e4af74b54ac65ab43904d8f8b771be4e2e
