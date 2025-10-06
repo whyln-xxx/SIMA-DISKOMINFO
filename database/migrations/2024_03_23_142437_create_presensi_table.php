@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('presensi', function (Blueprint $table) {
             $table->id();
-            $table->string('nik');
+            $table->string('npm');
             $table->date('tanggal_presensi');
             $table->time('jam_masuk');
             $table->time('jam_keluar')->nullable();
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('foto_keluar')->nullable();
             $table->string('lokasi_masuk');
             $table->string('lokasi_keluar')->nullable();
-            $table->foreign('nik')->references('nik')->on('karyawan');
+            $table->foreign('npm')->references('npm')->on('peserta_magang');
             $table->timestamps();
         });
     }

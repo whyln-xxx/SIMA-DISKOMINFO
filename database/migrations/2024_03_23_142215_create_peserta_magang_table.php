@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('karyawan', function (Blueprint $table) {
-            $table->string('nik')->primary();
-            $table->foreignId('departemen_id')->constrained('departemen', 'id');
+        Schema::create('peserta_magang', function (Blueprint $table) {
+            $table->string('npm')->primary();
+            $table->foreignId('jobtrain_id')->constrained('jobtrain', 'id');
             $table->string('nama_lengkap');
             $table->string('foto')->nullable();
-            $table->string('jabatan');
+            $table->string('jurusan');
             $table->string('telepon');
             $table->string('email')->unique();
             $table->string('password');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('karyawan');
+        Schema::dropIfExists('peserta_magang');
     }
 };

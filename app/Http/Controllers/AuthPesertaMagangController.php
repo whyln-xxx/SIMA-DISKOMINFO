@@ -3,32 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginKaryawanRequest;
+use App\Http\Requests\Auth\LoginPesertaMagangRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class AuthKaryawanController extends Controller
+class AuthPesertaMagangController extends Controller
 {
     /**
      * Display the login view.
      */
     public function create(): View
     {
-        return view('auth.login-karyawan');
+        return view('auth.login-peserta magang');
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginKaryawanRequest $request): RedirectResponse
+    public function store(LoginPesertaMagangRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('karyawan.dashboard', absolute: false));
+        return redirect()->intended(route('peserta_magang.dashboard', absolute: false));
     }
 
     /**
@@ -36,12 +36,12 @@ class AuthKaryawanController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('karyawan')->logout();
+        Auth::guard('peserta_magang')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/login-karyawan');
+        return redirect('/login-peserta_magang');
     }
 }

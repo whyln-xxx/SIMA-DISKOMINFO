@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{ $title . ' ' . $karyawan->nama_lengkap . '.pdf' }}</title>
+    <title>{{ $title . ' ' . $peserta_magang->nama_lengkap . '.pdf' }}</title>
 
     <!-- Normalize or reset CSS with your favorite library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -29,38 +29,38 @@
             border-collapse: collapse;
         }
 
-        .identitas-karyawan {
+        .identitas-peserta_magang {
             margin-top: 2rem;
         }
 
-        .identitas-karyawan td {
+        .identitas-peserta_magang td {
             padding: 0.25rem;
         }
 
-        .presensi-karyawan {
+        .presensi-peserta_magang {
             width: 100%;
             margin-top: 1.5rem;
         }
 
-        .presensi-karyawan tbody>tr>td {
+        .presensi-peserta_magang tbody>tr>td {
             text-align: center;
             padding: 0.5rem;
         }
 
-        .presensi-karyawan th {
+        .presensi-peserta_magang th {
             font-weight: bold;
             background: salmon;
             padding: 0.5rem;
             font-size: 14px;
         }
 
-        .presensi-karyawan>tbody>tr>td {
+        .presensi-peserta_magang>tbody>tr>td {
             font-size: 12px;
         }
 
-        .presensi-karyawan,
-        .presensi-karyawan>thead>tr>th,
-        .presensi-karyawan>tbody>tr>td {
+        .presensi-peserta_magang,
+        .presensi-peserta_magang>thead>tr>th,
+        .presensi-peserta_magang>tbody>tr>td {
             border: 1px solid black;
             padding: 0.5rem
         }
@@ -112,44 +112,44 @@
             </tr>
         </table>
 
-        <table class="identitas-karyawan">
+        <table class="identitas-peserta_magang">
             <tr>
                 <td rowspan="7">
-                    @if ($karyawan->foto)
-                        <img src="{{ public_path("storage/unggah/karyawan/$karyawan->foto") }}" alt="foto-karyawan" width="100" height="150" style="border-radius: 0.5rem" />
+                    @if ($peserta_magang->foto)
+                        <img src="{{ public_path("storage/unggah/peserta_magang/$peserta_magang->foto") }}" alt="foto-peserta_magang" width="100" height="150" style="border-radius: 0.5rem" />
                     @else
-                        <img src="{{ public_path("img/team-2.jpg") }}" alt="foto-karyawan" width="100" height="150" style="border-radius: 0.5rem" />
+                        <img src="{{ public_path("img/team-2.jpg") }}" alt="foto-peserta_magang" width="100" height="150" style="border-radius: 0.5rem" />
                     @endif
                 </td>
             </tr>
             <tr>
-                <td>NIK</td>
+                <td>NPM</td>
                 <td>:</td>
-                <td>{{ $karyawan->nik }}</td>
+                <td>{{ $peserta_magang->npm }}</td>
             </tr>
             <tr>
-                <td>Nama Karyawan</td>
+                <td>Nama Peserta Magang</td>
                 <td>:</td>
-                <td>{{ $karyawan->nama_lengkap }}</td>
+                <td>{{ $peserta_magang->nama_lengkap }}</td>
             </tr>
             <tr>
-                <td>Jabatan</td>
+                <td>Jurusan</td>
                 <td>:</td>
-                <td>{{ $karyawan->jabatan }}</td>
+                <td>{{ $peserta_magang->jabatan }}</td>
             </tr>
             <tr>
-                <td>Departemen</td>
+                <td>JobTrain</td>
                 <td>:</td>
-                <td>{{ $karyawan->departemen->nama }}</td>
+                <td>{{ $peserta_magang->jobtrain->nama }}</td>
             </tr>
             <tr>
                 <td>Email / Telepon</td>
                 <td>:</td>
-                <td>{{ $karyawan->email }} / {{ $karyawan->telepon }}</td>
+                <td>{{ $peserta_magang->email }} / {{ $peserta_magang->telepon }}</td>
             </tr>
         </table>
 
-        <table class="presensi-karyawan">
+        <table class="presensi-peserta_magang">
             <thead>
                 <tr>
                     <th>No.</th>

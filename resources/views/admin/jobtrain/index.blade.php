@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                {{ __("Data Departemen") }}
+                {{ __("Data JobTrain") }}
             </h2>
             <label class="btn btn-primary btn-sm" for="create_modal">Tambah Data</label>
         </div>
@@ -10,9 +10,9 @@
 
     <div class="container mx-auto px-5 pt-5">
         <div>
-            <form action="{{ route("admin.departemen") }}" method="get" enctype="multipart/form-data" class="my-3">
+            <form action="{{ route("admin.jobtrain") }}" method="get" enctype="multipart/form-data" class="my-3">
                 <div class="flex w-full flex-wrap gap-2 md:flex-nowrap">
-                    <input type="text" name="cari_departemen" placeholder="Pencarian" class="input input-bordered w-full" value="{{ request()->cari_departemen }}" />
+                    <input type="text" name="cari_jobtrain" placeholder="Pencarian" class="input input-bordered w-full" value="{{ request()->cari_jobtrain }}" />
                     <button type="submit" class="btn btn-success w-full md:w-14">
                         <i class="ri-search-2-line text-lg text-white"></i>
                     </button>
@@ -30,9 +30,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($departemen as $value => $item)
+                    @foreach ($jobtrain as $value => $item)
                         <tr class="hover">
-                            <td class="font-bold">{{ $departemen ->firstItem() + $value }}</td>
+                            <td class="font-bold">{{ $jobtrain ->firstItem() + $value }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->kode }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->nama }}</td>
                             <td>
@@ -48,7 +48,7 @@
                 </tbody>
             </table>
             <div class="mx-3 mb-5">
-                {{ $departemen->links() }}
+                {{ $jobtrain->links() }}
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                 </label>
             </div>
             <div>
-                <form action="{{ route("admin.departemen.store") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("admin.jobtrain.store") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <button type="reset" class="btn btn-neutral btn-sm">Reset</button>
                     <label class="form-control w-full">
@@ -111,7 +111,7 @@
                 </label>
             </div>
             <div>
-                <form action="{{ route("admin.departemen.update") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("admin.jobtrain.update") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="text" name="id" hidden>
                     <label class="form-control w-full">
@@ -174,7 +174,7 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ route('admin.departemen.edit') }}",
+                url: "{{ route('admin.jobtrain.edit') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "id": id
@@ -217,7 +217,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "post",
-                        url: "{{ route('admin.departemen.delete') }}",
+                        url: "{{ route('admin.jobtrain.delete') }}",
                         data: {
                             "_token": "{{ csrf_token() }}",
                             "id": id

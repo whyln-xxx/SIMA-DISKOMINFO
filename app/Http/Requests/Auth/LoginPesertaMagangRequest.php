@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-class LoginKaryawanRequest extends FormRequest
+class LoginPesertaMagangRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class LoginKaryawanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => ['required', 'string'],
+            'npm' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,11 +41,11 @@ class LoginKaryawanRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::guard('karyawan')->attempt($this->only('nik', 'password'), $this->boolean('remember'))) {
+        if (! Auth::guard('peserta_magang')->attempt($this->only('npm', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'nik' => trans('NIK atau Password yang Anda masukkan salah'),
+                'npm' => trans('NPM atau Password yang Anda masukkan salah'),
             ]);
         }
 
@@ -68,7 +68,7 @@ class LoginKaryawanRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'nik' => trans('auth.throttle', [
+            'npm' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -80,6 +80,6 @@ class LoginKaryawanRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('nik')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('npm')).'|'.$this->ip());
     }
 }

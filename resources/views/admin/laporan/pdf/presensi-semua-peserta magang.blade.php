@@ -29,38 +29,38 @@
             border-collapse: collapse;
         }
 
-        .identitas-karyawan {
+        .identitas-peserta_magang {
             margin-top: 2rem;
         }
 
-        .identitas-karyawan td {
+        .identitas-peserta_magang td {
             padding: 0.25rem;
         }
 
-        .presensi-karyawan {
+        .presensi-peserta_magang {
             width: 100%;
             margin-top: 1.5rem;
         }
 
-        .presensi-karyawan tbody>tr>td {
+        .presensi-peserta_magang tbody>tr>td {
             text-align: center;
             padding: 0.5rem;
         }
 
-        .presensi-karyawan th {
+        .presensi-peserta_magang th {
             font-weight: bold;
             background: salmon;
             padding: 0.5rem;
             font-size: 14px;
         }
 
-        .presensi-karyawan>tbody>tr>td {
+        .presensi-peserta_magang>tbody>tr>td {
             font-size: 12px;
         }
 
-        .presensi-karyawan,
-        .presensi-karyawan>thead>tr>th,
-        .presensi-karyawan>tbody>tr>td {
+        .presensi-peserta_magang,
+        .presensi-peserta_magang>thead>tr>th,
+        .presensi-peserta_magang>tbody>tr>td {
             border: 1px solid black;
             padding: 0.5rem
         }
@@ -112,12 +112,12 @@
             </tr>
         </table>
 
-        <table class="presensi-karyawan">
+        <table class="presensi-peserta_magang">
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Karyawan / NIK</th>
-                    <th>Jabatan / Departemen</th>
+                    <th>Nama Peserta Magang / NPM</th>
+                    <th>Jurusan / JobTrain</th>
                     <th>Jumlah Kehadiran</th>
                     <th>Jumlah Terlambat</th>
                 </tr>
@@ -129,10 +129,10 @@
                             {{ $value + 1 . "." }}
                         </td>
                         <td>
-                            {{ $item->nama_karyawan }} - {{ $item->nik }}
+                            {{ $item->nama_peserta_magang }} - {{ $item->npm }}
                         </td>
                         <td>
-                            {{ $item->jabatan_karyawan }} - {{ $item->nama_departemen }}
+                            {{ $item->jurusan_peserta_magang }} - {{ $item->nama_jobtrain }}
                         </td>
                         <td>
                             {{ $item->total_kehadiran }}

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Karyawan
+class LoginKaryawan
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class Karyawan
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::guard('karyawan')->check()) {
-            return to_route('login.view');
+        if (Auth::guard('peserta_magang')->check()) {
+            return to_route('jobtrain.dashboard');
         }
         return $next($request);
     }

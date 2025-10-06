@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Karyawan extends Authenticatable
+class PesertaMagang extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = "karyawan";
-    protected $primaryKey = "nik";
-    protected $guard = "karyawan";
+    protected $table = "peserta_magang";
+    protected $primaryKey = "npm";
+    protected $guard = "peserta_magang";
 
     protected $fillable = [
-        'nik',
-        'departemen_id',
+        'npm',
+        'jobtrain_id',
         'nama_lengkap',
-        'jabatan',
+        'jurusan',
         'telepon',
         'email',
         'password',
@@ -36,8 +36,8 @@ class Karyawan extends Authenticatable
         ];
     }
 
-    public function departemen()
+    public function Jobtrain()
     {
-        return $this->belongsTo(Departemen::class);
+        return $this->belongsTo(JobTrain::class);
     }
 }

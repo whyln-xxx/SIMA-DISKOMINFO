@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Karyawan;
+use App\Models\PesertaMagang;
 use App\Models\LokasiKantor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            DepartemenSeeder::class,
-            KaryawanSeeder::class,
+            JobTrainSeeder::class,
+            PesertaMagangSeeder::class,
             PresensiSeeder::class,
             PengajuanPresensiSeeder::class,
         ]);

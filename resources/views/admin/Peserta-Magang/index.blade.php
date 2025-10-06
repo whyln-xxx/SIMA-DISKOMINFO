@@ -13,10 +13,10 @@
             <form action="{{ route("admin.karyawan") }}" method="get" enctype="multipart/form-data" class="my-3">
                 <div class="flex w-full flex-wrap gap-2 md:flex-nowrap">
                     <input type="text" name="nama_karyawan" placeholder="Nama Karyawan" class="input input-bordered w-full md:w-1/2" value="{{ request()->nama_karyawan }}" />
-                    <select class="select select-bordered w-full md:w-1/2" name="kode_departemen">
-                        <option disabled selected>Pilih departemen!</option>
-                        @foreach ($departemen as $item)
-                            <option value="{{ $item->kode }}" @if ($item->kode == request()->kode_departemen) selected @endif>{{ $item->nama }}</option>
+                    <select class="select select-bordered w-full md:w-1/2" name="kode_jobtrain">
+                        <option disabled selected>Pilih jobtrain!</option>
+                        @foreach ($jobtrain as $item)
+                            <option value="{{ $item->kode }}" @if ($item->kode == request()->kode_jobtrain) selected @endif>{{ $item->nama }}</option>
                         @endforeach
                     </select>
                     <button type="submit" class="btn btn-success w-full md:w-14">
@@ -30,10 +30,10 @@
                 <thead class="text-sm text-gray-800 dark:text-gray-300">
                     <tr>
                         <th></th>
-                        <th>Departemen</th>
+                        <th>JobTrainn</th>
                         <th>Nama Lengkap</th>
                         <th>Foto</th>
-                        <th>Jabatan</th>
+                        <th>Jurusan</th>
                         <th>Telepon</th>
                         <th>Email</th>
                         <th>Aksi</th>
@@ -43,7 +43,7 @@
                     @foreach ($karyawan as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $karyawan->firstItem() + $value }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->departemen->kode }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jobtrain->kode }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_lengkap }}</td>
                             <td>
                                 <div class="avatar">
@@ -107,16 +107,16 @@
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text font-semibold">
-                                <span class="label-text font-semibold">Departemen<span class="text-red-500">*</span></span>
+                                <span class="label-text font-semibold">JobTrain<span class="text-red-500">*</span></span>
                             </span>
                         </div>
-                        <select name="departemen_id" class="select select-bordered w-full text-blue-700">
-                            <option disabled selected>Pilih Departemen!</option>
-                            @foreach ($departemen as $item)
-                                <option value="{{ $item->id }}" @if ($item->id == old("departemen_id")) selected @endif>{{ $item->nama }}</option>
+                        <select name="jobtrain_id" class="select select-bordered w-full text-blue-700">
+                            <option disabled selected>Pilih JobTrain!</option>
+                            @foreach ($jobtrain as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == old("jobtrain_id")) selected @endif>{{ $item->nama }}</option>
                             @endforeach
                         </select>
-                        @error("departemen_id")
+                        @error("jobtrain_id")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -238,12 +238,12 @@
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
-                            <span class="label-text font-semibold">Departemen<span class="text-red-500">*</span></span>
+                            <span class="label-text font-semibold">JobTrain<span class="text-red-500">*</span></span>
                             <span class="label-text-alt" id="loading_edit2"></span>
                         </div>
-                        <select name="departemen_id" id='departemen_id' class="select select-bordered w-full text-blue-700">
+                        <select name="jobtrainn_id" id='jobtrain_id' class="select select-bordered w-full text-blue-700">
                         </select>
-                        @error("departemen_id")
+                        @error("jobtrain_id")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -379,7 +379,7 @@
             $("#loading_edit6").html(loading);
             $("#loading_edit7").html(loading);
 
-            $("select[id='departemen_id']").children().remove().end();
+            $("select[id='jobtrainn_id']").children().remove().end();
 
             $.ajax({
                 type: "get",
@@ -402,13 +402,13 @@
                     $("input[name='telepon']").val(items[5]);
                     $("input[name='email']").val(items[6]);
 
-                    const departemen = @json($departemen);
-                    let options = '<option disabled>Pilih Departemen!</option>';
-                    departemen.forEach(item => {
+                    const jobtrain = @json($jobtrain);
+                    let options = '<option disabled>Pilih JobTrain!</option>';
+                    jobtrain.forEach(item => {
                         const isSelected = item.id == items[1] ? 'selected' : '';
                         options += `<option value="${item.id}" ${isSelected}>${item.nama}</option>`;
                     });
-                    $("select[id='departemen_id']").html(options);
+                    $("select[id='jobtrain_id']").html(options);
 
                     if (items[3] != null) {
                         $(".foto-edit-preview").attr("src", `{{ asset('storage/unggah/karyawan/${items[3]}') }}`);

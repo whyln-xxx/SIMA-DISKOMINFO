@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\StatusPengajuanPresensi;
-use App\Models\Departemen;
-use App\Models\Karyawan;
+use App\Models\JobTrain;
+use App\Models\PesertaMagang;
 use App\Models\LokasiKantor;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -18,24 +18,24 @@ class PresensiController extends Controller
     public function index()
     {
         $title = 'Presensi';
-        $presensiKaryawan = DB::table('presensi')
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+        $presensiPesertaMagang = DB::table('presensi')
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->where('tanggal_presensi', date('Y-m-d'))
             ->first();
         $lokasiKantor = LokasiKantor::where('is_used', true)->first();
-        return view('dashboard.presensi.index', compact('title', 'presensiKaryawan', 'lokasiKantor'));
+        return view('dashboard.presensi.index', compact('title', 'presensiPesertaMagang', 'lokasiKantor'));
     }
 
     public function store(Request $request)
     {
         $jenisPresensi = $request->jenis;
-        $nik = auth()->guard('karyawan')->user()->nik;
+        $npm = auth()->guard('peserta_magang')->user()->npm;
         $tglPresensi = date('Y-m-d');
         $jam = date('H:i:s');
 
         $lokasi = $request->lokasi;
         $folderPath = "public/unggah/presensi/";
-        $folderName = $nik . "-" . $tglPresensi . "-" . $jenisPresensi;
+        $folderName = $npm . "-" . $tglPresensi . "-" . $jenisPresensi;
 
         $lokasiKantor = LokasiKantor::where('is_used', true)->first();
         $langtitudeKantor = $lokasiKantor->latitude;
@@ -63,7 +63,7 @@ class PresensiController extends Controller
 
         if ($jenisPresensi == "masuk") {
             $data = [
-                "nik" => $nik,
+                "npm" => $npm,
                 "tanggal_presensi" => $tglPresensi,
                 "jam_masuk" => $jam,
                 "foto_masuk" => $fileName,
@@ -80,7 +80,7 @@ class PresensiController extends Controller
                 "updated_at" => Carbon::now(),
             ];
             $store = DB::table('presensi')
-                ->where('nik', auth()->guard('karyawan')->user()->nik)
+                ->where('pmk', auth()->guard('peserta_magang')->user()->npm)
                 ->where('tanggal_presensi', date('Y-m-d'))
                 ->update($data);
         }
@@ -122,7 +122,7 @@ class PresensiController extends Controller
     {
         $title = 'Riwayat Presensi';
         $riwayatPresensi = DB::table("presensi")
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->orderBy("tanggal_presensi", "asc")
             ->paginate(10);
         $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -134,7 +134,7 @@ class PresensiController extends Controller
         $bulan = $request->bulan;
         $tahun = $request->tahun;
         $data = DB::table('presensi')
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->whereMonth('tanggal_presensi', $bulan)
             ->whereYear('tanggal_presensi', $tahun)
             ->orderBy("tanggal_presensi", "asc")
@@ -144,9 +144,9 @@ class PresensiController extends Controller
 
     public function pengajuanPresensi()
     {
-        $title = "Izin Karyawan";
+        $title = "Izin PesertaMagang";
         $riwayatPengajuanPresensi = DB::table("pengajuan_presensi")
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->orderBy("tanggal_pengajuan", "asc")
             ->paginate(10);
         $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -162,13 +162,13 @@ class PresensiController extends Controller
 
     public function pengajuanPresensiStore(Request $request)
     {
-        $nik = auth()->guard('karyawan')->user()->nik;
+        $npm = auth()->guard('peserta_magang')->user()->npm;
         $tanggal_pengajuan = $request->tanggal_pengajuan;
         $status = $request->status;
         $keterangan = $request->keterangan;
 
         $cekPengajuan = DB::table('pengajuan_presensi')
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->whereDate('tanggal_pengajuan', Carbon::make($tanggal_pengajuan)->format('Y-m-d'))
             ->where(function (Builder $query) {
                 $query->where('status_approved', 0)
@@ -177,10 +177,10 @@ class PresensiController extends Controller
             ->first();
 
         if ($cekPengajuan) {
-            return to_route('karyawan.izin')->with("error", "Anda sudah menambahkan pengajuan pada tanggal " . Carbon::make($tanggal_pengajuan)->format('d-m-Y'));
+            return to_route('peserta_magang.izin')->with("error", "Anda sudah menambahkan pengajuan pada tanggal " . Carbon::make($tanggal_pengajuan)->format('d-m-Y'));
         } else {
             $store = DB::table('pengajuan_presensi')->insert([
-                'nik' => $nik,
+                'npm' => $npm,
                 'tanggal_pengajuan' => $tanggal_pengajuan,
                 'status' => $status,
                 'keterangan' => $keterangan,
@@ -190,10 +190,10 @@ class PresensiController extends Controller
         }
 
         if ($store) {
-            return to_route('karyawan.izin')->with("success", "Berhasil menambahkan pengajuan");
+            return to_route('peserta_magang.izin')->with("success", "Berhasil menambahkan pengajuan");
 
         } else {
-            return to_route('karyawan.izin')->with("error", "Gagal menambahkan pengajuan");
+            return to_route('peserta_magang.izin')->with("error", "Gagal menambahkan pengajuan");
         }
     }
 
@@ -202,7 +202,7 @@ class PresensiController extends Controller
         $bulan = $request->bulan;
         $tahun = $request->tahun;
         $data = DB::table('pengajuan_presensi')
-            ->where('nik', auth()->guard('karyawan')->user()->nik)
+            ->where('npm', auth()->guard('peserta_magang')->user()->npm)
             ->whereMonth('tanggal_pengajuan', $bulan)
             ->whereYear('tanggal_pengajuan', $tahun)
             ->orderBy("tanggal_pengajuan", "asc")
@@ -213,11 +213,11 @@ class PresensiController extends Controller
     public function monitoringPresensi(Request $request)
     {
         $query = DB::table('presensi as p')
-            ->join('karyawan as k', 'p.nik', '=', 'k.nik')
-            ->join('departemen as d', 'k.departemen_id', '=', 'd.id')
+            ->join('peserta_magang as k', 'p.npm', '=', 'k.npm')
+            ->join('jobtrain as d', 'k.jobtrain_id', '=', 'd.id')
             ->orderBy('k.nama_lengkap', 'asc')
             ->orderBy('d.kode', 'asc')
-            ->select('p.*', 'k.nama_lengkap as nama_karyawan', 'd.nama as nama_departemen');
+            ->select('p.*', 'k.nama_lengkap as nama_peserta_magang', 'd.nama as nama_jobtrain');
 
         if ($request->tanggal_presensi) {
             $query->whereDate('p.tanggal_presensi', $request->tanggal_presensi);
@@ -235,10 +235,10 @@ class PresensiController extends Controller
     public function viewLokasi(Request $request)
     {
         if ($request->tipe == "lokasi_masuk") {
-            $data = DB::table('presensi')->where('nik', $request->nik)->first('lokasi_masuk');
+            $data = DB::table('presensi')->where('npm', $request->npm)->first('lokasi_masuk');
             return $data;
         } elseif ($request->tipe == "lokasi_keluar") {
-            $data = DB::table('presensi')->where('nik', $request->nik)->first('lokasi_keluar');
+            $data = DB::table('presensi')->where('npm', $request->npm)->first('lokasi_keluar');
             return $data;
         }
     }
@@ -246,57 +246,57 @@ class PresensiController extends Controller
     public function laporan(Request $request)
     {
         $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        $karyawan = Karyawan::orderBy('nama_lengkap', 'asc')->get();
-        return view('admin.laporan.presensi', compact('bulan', 'karyawan'));
+        $peserta_magang= PesertaMagang::orderBy('nama_lengkap', 'asc')->get();
+        return view('admin.laporan.presensi', compact('bulan', 'peserta_magang'));
     }
 
-    public function laporanPresensiKaryawan(Request $request)
+    public function laporanPresensiPesertaMagang(Request $request)
     {
-        $title = 'Laporan Presensi Karyawan';
+        $title = 'Laporan Presensi PesertaMagang';
         $bulan = $request->bulan;
-        $karyawan = Karyawan::query()
-            ->with('departemen')
-            ->where('nik', $request->karyawan)
+        $peserta_magang = PesertaMagang::query()
+            ->with('jobtrain')
+            ->where('npm', $request->peserta_magang)
             ->first();
         $riwayatPresensi = DB::table("presensi")
-            ->where('nik', $request->karyawan)
+            ->where('npm', $request->peserta_magang)
             ->whereMonth('tanggal_presensi', Carbon::make($bulan)->format('m'))
             ->whereYear('tanggal_presensi', Carbon::make($bulan)->format('Y'))
             ->orderBy("tanggal_presensi", "asc")
             ->get();
 
-        // return view('admin.laporan.pdf.presensi-karyawan', compact('title', 'bulan', 'karyawan', 'riwayatPresensi'));
-        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-karyawan', compact('title', 'bulan', 'karyawan', 'riwayatPresensi'));
-        return $pdf->stream($title . ' ' . $karyawan->nama_lengkap . '.pdf');
+        // return view('admin.laporan.pdf.presensi-peserta_magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
+        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-peserta_magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
+        return $pdf->stream($title . ' ' . $peserta_magang->nama_lengkap . '.pdf');
     }
 
-    public function laporanPresensiSemuaKaryawan(Request $request)
+    public function laporanPresensiSemuaPesertaMagang(Request $request)
     {
-        $title = 'Laporan Presensi Semua Karyawan';
+        $title = 'Laporan Presensi Semua Peserta Magang';
         $bulan = $request->bulan;
         $riwayatPresensi = DB::table("presensi as p")
-            ->join('karyawan as k', 'p.nik', '=', 'k.nik')
-            ->join('departemen as d', 'k.departemen_id', '=', 'd.id')
+            ->join('peserta_magang as k', 'p.npm', '=', 'k.npm')
+            ->join('jobtrain as d', 'k.jobtrain_id', '=', 'd.id')
             ->whereMonth('tanggal_presensi', Carbon::make($bulan)->format('m'))
             ->whereYear('tanggal_presensi', Carbon::make($bulan)->format('Y'))
             ->select(
-                'p.nik',
-                'k.nama_lengkap as nama_karyawan',
-                'k.jabatan as jabatan_karyawan',
-                'd.nama as nama_departemen'
+                'p.npm',
+                'k.nama_lengkap as nama_peserta_magang',
+                'k.jabatan as jurusan_peserta_magang',
+                'd.nama as nama_jobtrain'
             )
-            ->selectRaw("COUNT(p.nik) as total_kehadiran, SUM(IF (jam_masuk > '08:00',1,0)) as total_terlambat")
+            ->selectRaw("COUNT(p.npm) as total_kehadiran, SUM(IF (jam_masuk > '08:00',1,0)) as total_terlambat")
             ->groupBy(
-                'p.nik',
+                'p.npm',
                 'k.nama_lengkap',
-                'k.jabatan',
+                'k.jurusan',
                 'd.nama'
             )
             ->orderBy("tanggal_presensi", "asc")
             ->get();
 
-        // return view('admin.laporan.pdf.presensi-semua-karyawan', compact('title', 'bulan', 'riwayatPresensi'));
-        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-karyawan', compact('title', 'bulan', 'riwayatPresensi'));
+        // return view('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
+        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
         return $pdf->stream($title . '.pdf');
     }
 
@@ -304,24 +304,24 @@ class PresensiController extends Controller
     {
         $title = 'Administrasi Presensi';
 
-        $departemen = Departemen::get();
+        $jobtrain = JobTrain::get();
 
         $query = DB::table('pengajuan_presensi as p')
-            ->join('karyawan as k', 'k.nik', '=', 'p.nik')
-            ->join('departemen as d', 'k.departemen_id', '=', 'd.id')
+            ->join('peserta_magang as k', 'k.npm', '=', 'p.npm')
+            ->join('jobtrain as d', 'k.jobtrain_id', '=', 'd.id')
             ->where('p.tanggal_pengajuan', '>=', Carbon::now()->startOfMonth()->format("Y-m-d"))
             ->where('p.tanggal_pengajuan', '<=', Carbon::now()->endOfMonth()->format("Y-m-d"))
-            ->select('p.*', 'k.nama_lengkap as nama_karyawan', 'd.nama as nama_departemen', 'd.id as id_departemen')
+            ->select('p.*', 'k.nama_lengkap as nama_peserta_magang', 'd.nama as nama_jobtrain', 'd.id as id_jobtrain')
             ->orderBy('p.tanggal_pengajuan', 'asc');
 
-        if ($request->nik) {
-            $query->where('k.nik', 'LIKE', '%' . $request->nik . '%');
+        if ($request->npm) {
+            $query->where('k.npm', 'LIKE', '%' . $request->npm . '%');
         }
-        if ($request->karyawan) {
-            $query->where('k.nama_lengkap', 'LIKE', '%' . $request->karyawan . '%');
+        if ($request->PesertaMagang) {
+            $query->where('k.nama_lengkap', 'LIKE', '%' . $request->PesertaMagang . '%');
         }
-        if ($request->departemen) {
-            $query->where('d.id', $request->departemen);
+        if ($request->jobtrainn) {
+            $query->where('d.id', $request->jobtrain);
         }
         if ($request->tanggal_awal) {
             $query->WhereDate('p.tanggal_pengajuan', '>=', Carbon::parse($request->tanggal_awal)->format('Y-m-d'));
@@ -338,7 +338,7 @@ class PresensiController extends Controller
 
         $pengajuan = $query->paginate(10);
 
-        return view('admin.monitoring-presensi.administrasi-presensi', compact('title', 'pengajuan', 'departemen'));
+        return view('admin.monitoring-presensi.administrasi-presensi', compact('title', 'pengajuan', 'jobtrain'));
     }
 
     public function persetujuanPresensi(Request $request)
