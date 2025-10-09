@@ -38,13 +38,13 @@
                         <tr class="hover">
                             <td class="font-bold">{{ $monitoring->firstItem() + $value }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->nik }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_karyawan }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_departemen }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_peserta_magang }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_jobtrain }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->jam_masuk }}</td>
                             <td class="text-slate-500 dark:text-slate-300">
                                 <div class="avatar">
                                     <div class="w-24 rounded">
-                                        <label for="view_modal" class="cursor-pointer" onclick="return viewLokasi('lokasi_masuk', '{{ $item->nik }}')">
+                                        <label for="view_modal" class="cursor-pointer" onclick="return viewLokasi('lokasi_masuk', '{{ $item->npm }}')">
                                             <img src="{{ asset("storage/unggah/presensi/$item->foto_masuk") }}" alt="{{ $item->foto_masuk }}" />
                                         </label>
                                     </div>
@@ -74,7 +74,7 @@
                                 @if ($item->jam_masuk > Carbon\Carbon::make("08:00:00")->format("H:i:s"))
                                     @php
                                         $masuk = Carbon\Carbon::make($item->jam_masuk);
-                                        $batas = Carbon\Carbon::make("08:00:00");
+                                        $batas = Carbon\Carbon::make("07:30:00");
                                         $diff = $masuk->diff($batas);
                                         if ($diff->format("%h") != 0) {
                                             $selisih = $diff->format("%h jam %I menit");

@@ -16,7 +16,7 @@ class AuthPesertaMagangController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login-peserta magang');
+        return view('auth.login-peserta-magang');
     }
 
     /**
@@ -28,7 +28,7 @@ class AuthPesertaMagangController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('peserta_magang.dashboard', absolute: false));
+        return redirect()->intended(route('dashboard.index', absolute: false));
     }
 
     /**
@@ -42,6 +42,6 @@ class AuthPesertaMagangController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login-peserta_magang');
+        return redirect('/login-peserta-magang');
     }
 }

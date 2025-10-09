@@ -94,7 +94,7 @@
             });
             $.ajax({
                 type: "POST",
-                url: "{{ route("karyawan.presensi.store") }}",
+                url: "{{ route("peserta_magang.presensi.store") }}",
                 data: {
                     _token: "{{ csrf_token() }}",
                     image: image,
@@ -115,7 +115,7 @@
                             icon: "success",
                             confirmButtonText: "OK"
                         });
-                        setTimeout("location.href='{{ route("karyawan.dashboard") }}'", 5000);
+                        setTimeout("location.href='{{ route("dashboard.index") }}'", 5000);
 
                     } else if (res.status == 500) {
                         if (res.jenis_error == "radius") {
@@ -152,18 +152,18 @@
                         <input type="text" name="lokasi" id="lokasi" class="input input-primary" hidden>
                         <div id="webcam-capture" class="mx-auto"></div>
                         <div class="flex justify-center">
-                            @if ($presensiKaryawan == null)
+                            @if ($presensiPesertaMagang == null)
                                 <input type="text" name="presensi" id="presensi" value="masuk" hidden>
                                 <button id="take-presensi" class="btn btn-primary btn-wide text-white">
                                     <i class="ri-camera-line text-lg"></i>
                                     Presensi Masuk
                                 </button>
-                            @elseif ($presensiKaryawan->jam_keluar != null)
+                            @elseif ($presensiPesertaMagang->jam_keluar != null)
                                 <button id="take-presensi" class="btn btn-disabled btn-ghost btn-wide text-white dark:bg-slate-600/60 dark:text-white">
                                     <i class="ri-camera-line text-lg"></i>
                                     Presensi Selesai
                                 </button>
-                            @elseif ($presensiKaryawan != null)
+                            @elseif ($presensiPesertaMagang != null)
                                 <input type="text" name="presensi" id="presensi" value="keluar" hidden>
                                 <button id="take-presensi" class="btn btn-secondary btn-wide text-white">
                                     <i class="ri-camera-line text-lg"></i>

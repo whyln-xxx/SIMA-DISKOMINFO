@@ -12,7 +12,7 @@
                             <div class="w-2/3 max-w-full flex-none px-3">
                                 <div>
                                     <p class="mb-0 font-sans text-sm font-semibold uppercase leading-normal dark:text-white dark:opacity-60">Jam Masuk Kerja</p>
-                                    <h5 class="mb-2 font-bold dark:text-white">08:00 WIB</h5>
+                                    <h5 class="mb-2 font-bold dark:text-white">07:30 WIB</h5>
                                 </div>
                             </div>
                             <div class="basis-1/3 px-3 text-right">
@@ -270,7 +270,7 @@
                                                 <div class="flex items-center px-2 py-1">
                                                     <div>
                                                         <h1 class="mb-0 font-bold leading-normal text-slate-500 dark:text-slate-300">{{ $item->nama_lengkap }}</h1>
-                                                        <p class="mb-0 text-xs leading-tight text-slate-500 dark:text-slate-300">{{ $item->jabatan }}</p>
+                                                        <p class="mb-0 text-xs leading-tight text-slate-500 dark:text-slate-300">{{ $item->jurusan }}</p>
                                                     </div>
                                                 </div>
                                             </td>

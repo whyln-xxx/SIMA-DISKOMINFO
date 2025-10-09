@@ -30,10 +30,10 @@
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-auto max-w-full flex-none px-3">
                         <div class="h-19 w-19 relative flex items-center justify-center rounded-xl text-5xl text-slate-700 transition-all duration-200 ease-in-out dark:text-white">
-                            @if ($karyawan->foto)
+                            @if ($peserta_magang->foto)
                                 <div class="avatar">
                                     <div class="w-20 rounded-full">
-                                        <img src="{{ asset("storage/unggah/karyawan/$karyawan->foto") }}" />
+                                        <img src="{{ asset("storage/unggah/peserta_magang/$peserta_magang->foto") }}" />
                                     </div>
                                 </div>
                             @else
@@ -43,8 +43,8 @@
                     </div>
                     <div class="my-auto w-auto max-w-full flex-none px-3">
                         <div class="h-full">
-                            <h5 class="mb-1 dark:text-white">{{ $karyawan->nama_lengkap }}</h5>
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $karyawan->jabatan }}</p>
+                            <h5 class="mb-1 dark:text-white">{{ $peserta_magang->nama_lengkap }}</h5>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $peserta_magang->jobtrain }}</p>
                         </div>
                     </div>
                     @if (session()->get("success"))
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <form action="{{ route("karyawan.profile.update") }}" method="post" enctype="multipart/form-data" class="-mx-3 flex flex-wrap p-6">
+        <form action="{{ route("peserta_magang.profile.update") }}" method="post" enctype="multipart/form-data" class="-mx-3 flex flex-wrap p-6">
             @csrf
             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-8/12">
                 <div class="dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 bg-white bg-clip-border shadow-xl">
@@ -95,25 +95,25 @@
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
                                 <div class="mb-4">
                                     <label for="nik" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">NIK</label>
-                                    <input type="text" name="nik" value="{{ $karyawan->nik }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
+                                    <input type="text" name="nik" value="{{ $peserta_magang->npm }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
                                 </div>
                             </div>
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
                                 <div class="mb-4">
                                     <label for="email" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">Email</label>
-                                    <input type="email" name="email" value="{{ $karyawan->email }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
+                                    <input type="email" name="email" value="{{ $peserta_magang->email }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
                                 </div>
                             </div>
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
                                 <div class="mb-4">
                                     <label for="nama_lengkap" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">Nama Lengkap</label>
-                                    <input type="text" name="nama_lengkap" value="{{ $karyawan->nama_lengkap }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" />
+                                    <input type="text" name="nama_lengkap" value="{{ $peserta_magang->nama_lengkap }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" />
                                 </div>
                             </div>
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
                                 <div class="mb-4">
                                     <label for="telepon" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">Telepon</label>
-                                    <input type="text" name="telepon" value="{{ $karyawan->telepon }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" />
+                                    <input type="text" name="telepon" value="{{ $peserta_magang->telepon }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" />
                                 </div>
                             </div>
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
@@ -128,8 +128,8 @@
             </div>
 
             <div class="md:flex-0 mt-6 w-full max-w-full shrink-0 px-3 md:mt-0 md:w-4/12">
-                @if ($karyawan->foto)
-                    <img src="{{ asset("storage/unggah/karyawan/$karyawan->foto") }}" class="img-preview mb-3 rounded" />
+                @if ($peserta_magang->foto)
+                    <img src="{{ asset("storage/unggah/peserta_magang/$peserta_magang->foto") }}" class="img-preview mb-3 rounded" />
                 @else
                     <img src="{{ asset("img/carousel-3.jpg") }}" class="img-preview mb-3 rounded" />
                 @endif

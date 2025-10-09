@@ -10,14 +10,14 @@
                         <h6 class="font-bold dark:text-white">{{ $title }}</h6>
                     </div>
                     <div>
-                        <a href="{{ route("karyawan.izin") }}" class="bg-150 active:opacity-85 tracking-tight-rem bg-x-25 mb-0 inline-block cursor-pointer rounded-lg border border-solid border-slate-500 dark:border-white bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal text-slate-500 dark:text-white shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 md:px-8 md:py-2">
+                        <a href="{{ route("peserta_magang.izin") }}" class="bg-150 active:opacity-85 tracking-tight-rem bg-x-25 mb-0 inline-block cursor-pointer rounded-lg border border-solid border-slate-500 dark:border-white bg-transparent px-4 py-1 text-center align-middle text-sm font-bold leading-normal text-slate-500 dark:text-white shadow-none transition-all ease-in hover:-translate-y-px hover:opacity-75 md:px-8 md:py-2">
                             <i class="ri-arrow-left-line"></i>
                             Kembali
                         </a>
                     </div>
                 </div>
                 <div class="flex-auto px-6 pb-6 pt-0">
-                    <form action="{{ route('karyawan.izin.store') }}" method="POST" enctype="multipart/form-data" id="pengajuanPresensiStore" class="mx-auto w-full lg:w-3/4 xl:w-1/2">
+                    <form action="{{ route('peserta_magang.izin.store') }}" method="POST" enctype="multipart/form-data" id="pengajuanPresensiStore" class="mx-auto w-full lg:w-3/4 xl:w-1/2">
                         @csrf
                         <label class="form-control w-full">
                             <div class="label">

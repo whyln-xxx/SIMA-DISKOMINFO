@@ -7,18 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginKaryawan
+class LoginPesertaMagang
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
+        // Jika peserta magang SUDAH login, redirect ke dashboard
         if (Auth::guard('peserta_magang')->check()) {
-            return to_route('jobtrain.dashboard');
+            return redirect()->route('dashboard.index');
         }
+
+        // Kalau belum login, lanjutkan ke halaman login
         return $next($request);
     }
 }

@@ -73,7 +73,7 @@ class PesertaMagangController extends Controller
         }
         $peserta_magang = $query->paginate(10);
 
-        return view('admin.peserta_magang.index', compact('title', 'peserta_magang', 'jobtrain'));
+        return view('admin.Peserta-Magang.index', compact('title', 'peserta_magang', 'jobtrain'));
     }
 
     public function store(Request $request)
@@ -116,7 +116,7 @@ class PesertaMagangController extends Controller
     {
         $peserta_magang = PesertaMagang::where('npm', $request->npm_lama)->first();
         $data = $request->validate([
-            'npm' => ['required', Rule::unique('PesertaMagang')->ignore($peserta_magang)],
+            'npm' => ['required', Rule::unique('peserta_magang')->ignore($peserta_magang)],
             'jobtrain_id' => 'required',
             'nama_lengkap' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',

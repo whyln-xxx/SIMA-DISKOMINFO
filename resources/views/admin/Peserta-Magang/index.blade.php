@@ -10,9 +10,9 @@
 
     <div class="container mx-auto px-5 pt-5">
         <div>
-            <form action="{{ route("admin.karyawan") }}" method="get" enctype="multipart/form-data" class="my-3">
+            <form action="{{ route("admin.peserta_magang") }}" method="get" enctype="multipart/form-data" class="my-3">
                 <div class="flex w-full flex-wrap gap-2 md:flex-nowrap">
-                    <input type="text" name="nama_karyawan" placeholder="Nama Karyawan" class="input input-bordered w-full md:w-1/2" value="{{ request()->nama_karyawan }}" />
+                    <input type="text" name="nama_peserta_magang" placeholder="Nama Karyawan" class="input input-bordered w-full md:w-1/2" value="{{ request()->nama_peserta_magang }}" />
                     <select class="select select-bordered w-full md:w-1/2" name="kode_jobtrain">
                         <option disabled selected>Pilih jobtrain!</option>
                         @foreach ($jobtrain as $item)
@@ -30,7 +30,7 @@
                 <thead class="text-sm text-gray-800 dark:text-gray-300">
                     <tr>
                         <th></th>
-                        <th>JobTrainn</th>
+                        <th>JobTrain</th>
                         <th>Nama Lengkap</th>
                         <th>Foto</th>
                         <th>Jurusan</th>
@@ -40,23 +40,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($karyawan as $value => $item)
+                    @foreach ($peserta_magang as $value => $item)
                         <tr class="hover">
-                            <td class="font-bold">{{ $karyawan->firstItem() + $value }}</td>
+                            <td class="font-bold">{{ $peserta_magang->firstItem() + $value }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->jobtrain->kode }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_lengkap }}</td>
                             <td>
                                 <div class="avatar">
                                     <div class="w-12 rounded-xl">
                                         @if ($item->foto)
-                                            <img src="{{ asset("storage/unggah/karyawan/$item->foto") }}" />
+                                            <img src="{{ asset("storage/unggah/peserta_magang/$item->foto") }}" />
                                         @else
                                             <img src="{{ asset("img/team-2.jpg") }}" />
                                         @endif
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jabatan }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jurusan }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->telepon }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->email }}</td>
                             <td>
@@ -72,7 +72,7 @@
                 </tbody>
             </table>
             <div class="mx-3 mb-5">
-                {{ $karyawan->links() }}
+                {{ $peserta_magang->links() }}
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
                 </label>
             </div>
             <div>
-                <form action="{{ route("admin.karyawan.store") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("admin.peserta_magang.store") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <button type="reset" class="btn btn-neutral btn-sm">Reset</button>
                     <label class="form-control w-full">
@@ -138,11 +138,11 @@
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text font-semibold">
-                                <span class="label-text font-semibold">Jabatan<span class="text-red-500">*</span></span>
+                                <span class="label-text font-semibold">Jurusan<span class="text-red-500">*</span></span>
                             </span>
                         </div>
-                        <input type="text" name="jabatan" placeholder="Jabatan" class="input input-bordered w-full text-blue-700" value="{{ old("jabatan") }}" required />
-                        @error("jabatan")
+                        <input type="text" name="jurusan" placeholder="Jurusan" class="input input-bordered w-full text-blue-700" value="{{ old("jurusan") }}" required />
+                        @error("jurusan")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -221,7 +221,7 @@
                 </label>
             </div>
             <div>
-                <form action="{{ route("admin.karyawan.update") }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route("admin.peserta_magang.update") }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="text" name="nik_lama" hidden>
                     <label class="form-control w-full">
@@ -241,7 +241,7 @@
                             <span class="label-text font-semibold">JobTrain<span class="text-red-500">*</span></span>
                             <span class="label-text-alt" id="loading_edit2"></span>
                         </div>
-                        <select name="jobtrainn_id" id='jobtrain_id' class="select select-bordered w-full text-blue-700">
+                        <select name="jobtrain_id" id='jobtrain_id' class="select select-bordered w-full text-blue-700">
                         </select>
                         @error("jobtrain_id")
                             <div class="label">
@@ -263,11 +263,11 @@
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
-                            <span class="label-text font-semibold">Jabatan<span class="text-red-500">*</span></span>
+                            <span class="label-text font-semibold">Jurusan<span class="text-red-500">*</span></span>
                             <span class="label-text-alt" id="loading_edit4"></span>
                         </div>
-                        <input type="text" name="jabatan" placeholder="Jabatan" class="input input-bordered w-full text-blue-700" required />
-                        @error("jabatan")
+                        <input type="text" name="jurusan" placeholder="Jurusan" class="input input-bordered w-full text-blue-700" required />
+                        @error("jurusan")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -379,11 +379,11 @@
             $("#loading_edit6").html(loading);
             $("#loading_edit7").html(loading);
 
-            $("select[id='jobtrainn_id']").children().remove().end();
+            $("select[id='jobtrain_id']").children().remove().end();
 
             $.ajax({
                 type: "get",
-                url: "{{ route('admin.karyawan.edit') }}",
+                url: "{{ route('admin.peserta_magang.edit') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "nik": nik
@@ -398,7 +398,7 @@
                     $("input[name='nik_lama']").val(items[0]);
                     $("input[name='nik']").val(items[0]);
                     $("input[name='nama_lengkap']").val(items[2]);
-                    $("input[name='jabatan']").val(items[4]);
+                    $("input[name='jurusan']").val(items[4]);
                     $("input[name='telepon']").val(items[5]);
                     $("input[name='email']").val(items[6]);
 
@@ -411,7 +411,7 @@
                     $("select[id='jobtrain_id']").html(options);
 
                     if (items[3] != null) {
-                        $(".foto-edit-preview").attr("src", `{{ asset('storage/unggah/karyawan/${items[3]}') }}`);
+                        $(".foto-edit-preview").attr("src", `{{ asset('storage/unggah/peserta_magang/${items[3]}') }}`);
                     } else {
                         $(".foto-edit-preview").attr("src", ``);
                     }
@@ -447,7 +447,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "post",
-                        url: "{{ route('admin.karyawan.delete') }}",
+                        url: "{{ route('admin.peserta_magang.delete') }}",
                         data: {
                             "_token": "{{ csrf_token() }}",
                             "nik": nik

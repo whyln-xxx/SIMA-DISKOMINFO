@@ -11,7 +11,7 @@
                 <div class="flex items-center">
                     <i class="ri-team-line text-5xl md:text-3xl lg:text-5xl"></i>
                     <div class="card-body">
-                        <h2 class="card-title md:text-base">{{ $totalKaryawan }}</h2>
+                        <h2 class="card-title md:text-base">{{ $totalPesertaMagang }}</h2>
                         <p class="text-lg md:text-sm">Total Karyawan</p>
                     </div>
                 </div>

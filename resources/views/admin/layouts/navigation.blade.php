@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.karyawan')" :active="request()->routeIs('admin.karyawan')">
+                    <x-nav-link :href="route('admin.peserta_magang')" :active="request()->routeIs('admin.peserta_magang')">
                         {{ __('Data Karyawan') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.departemen')" :active="request()->routeIs('admin.departemen')">
+                    <x-nav-link :href="route('admin.jobtrain')" :active="request()->routeIs('admin.jobtrain')">
                         {{ __('Data Departemen') }}
                     </x-nav-link>
                 </div>
@@ -109,13 +109,13 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.karyawan')" :active="request()->routeIs('admin.karyawan')">
+            <x-responsive-nav-link :href="route('admin.peserta_magang')" :active="request()->routeIs('admin.peserta_magang')">
                 {{ __('Data Karyawan') }}
             </x-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.departemen')" :active="request()->routeIs('admin.departemen')">
+            <x-responsive-nav-link :href="route('admin.jobtrain')" :active="request()->routeIs('admin.jobtrain')">
                 {{ __('Data Departemen') }}
             </x-responsive-nav-link>
         </div>

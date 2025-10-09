@@ -125,17 +125,17 @@
                     </button>
                 </li>
                 <li class="flex items-center pl-4 xl:pr-4">
-                    <a href="{{ route("karyawan.profile") }}" class="ease-nav-brand block px-0 py-2 text-sm font-semibold text-white transition-all">
-                        @if (Auth::guard("karyawan")->user()->foto)
+                    <a href="{{ route("peserta_magang.profile") }}" class="ease-nav-brand block px-0 py-2 text-sm font-semibold text-white transition-all">
+                        @if (Auth::guard("peserta_magang")->user()->foto)
                             <div class="avatar">
                                 <div class="w-6 rounded-full">
-                                    <img src="{{ asset("storage/unggah/karyawan/" . Auth::guard("karyawan")->user()->foto) }}" />
+                                    <img src="{{ asset("storage/unggah/peserta_magang/" . Auth::guard("peserta_magang")->user()->foto) }}" />
                                 </div>
                             </div>
                         @else
                             <i class="ri-user-3-fill sm:mr-1"></i>
                         @endif
-                        <span class="hidden sm:inline">{{ Auth::guard("karyawan")->user()->nama_lengkap }}</span>
+                        <span class="hidden sm:inline">{{ Auth::guard("peserta_magang")->user()->nama_lengkap }}</span>
                     </a>
                 </li>
                 <li class="flex items-center px-4 xl:hidden">

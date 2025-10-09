@@ -21,7 +21,7 @@
                         <div class="label">
                             <span class="label-text">Nama Karyawan</span>
                         </div>
-                        <input type="text" name="karyawan" placeholder="Nama Karyawan" class="input input-bordered w-full" value="{{ request()->karyawan }}" />
+                        <input type="text" name="karyawan" placeholder="Nama Karyawan" class="input input-bordered w-full" value="{{ request()->peserta_magang }}" />
                     </label>
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
@@ -29,8 +29,8 @@
                         </div>
                         <select name="departemen" class="select select-bordered">
                             <option value="0">Semua Departemen</option>
-                            @foreach ($departemen as $item)
-                                <option value="{{ $item->id }}" {{ request()->departemen == $item->id ? "selected" : "" }}>{{ $item->nama }}</option>
+                            @foreach ($jobtrain as $item)
+                                <option value="{{ $item->id }}" {{ request()->jobtrain == $item->id ? "selected" : "" }}>{{ $item->nama }}</option>
                             @endforeach
                         </select>
                     </label>
@@ -90,8 +90,8 @@
                     @foreach ($pengajuan as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $value + 1 }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_karyawan }} - {{ $item->nik }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_departemen }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_peserta_magang }} - {{ $item->npm }}</td>
+                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_jobtrain }}</td>
                             <td class="text-slate-500 dark:text-slate-300">{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format("l, d-m-Y") }}</td>
                             <td class="text-slate-500 dark:text-slate-300">
                                 @if ($item->status == "I")
@@ -103,23 +103,23 @@
                             <td class="text-slate-500 dark:text-slate-300">{{ $item->keterangan }}</td>
                             <td class="flex justify-center gap-2">
                                 @if ($item->status_approved == 1)
-                                    <label class="btn btn-warning btn-sm tooltip flex items-center" data-tip="Diterima" onclick="return terima_button('{{ $item->id }}', '{{ $item->nama_karyawan }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'terima')">
+                                    <label class="btn btn-warning btn-sm tooltip flex items-center" data-tip="Diterima" onclick="return terima_button('{{ $item->id }}', '{{ $item->nama_peserta_magang }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'terima')">
                                         <i class="ri-checkbox-circle-line"></i>
                                     </label>
-                                    <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Ditolak" onclick="return tolak_button('{{ $item->id }}', '{{ $item->nama_karyawan }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'tolak')">
+                                    <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Ditolak" onclick="return tolak_button('{{ $item->id }}', '{{ $item->nama_peserta_magang }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'tolak')">
                                         <i class="ri-close-circle-line"></i>
                                     </label>
                                 @elseif ($item->status_approved == 2)
                                     <div class="flex items-center gap-2">
                                         <div class="badge badge-success">Diterima</div>
-                                        <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Dibatalkan" onclick="return batal_button('{{ $item->id }}', '{{ $item->nama_karyawan }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'batal')">
+                                        <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Dibatalkan" onclick="return batal_button('{{ $item->id }}', '{{ $item->nama_peserta_magang }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'batal')">
                                             <i class="ri-close-circle-line"></i>
                                         </label>
                                     </div>
                                 @elseif ($item->status_approved == 3)
                                     <div class="flex items-center gap-2">
                                         <div class="badge badge-error">Ditolak</div>
-                                        <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Dibatalkan" onclick="return batal_button('{{ $item->id }}', '{{ $item->nama_karyawan }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'batal')">
+                                        <label class="btn btn-error btn-sm tooltip flex items-center" data-tip="Dibatalkan" onclick="return batal_button('{{ $item->id }}', '{{ $item->nama_peserta_magang }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'batal')">
                                             <i class="ri-close-circle-line"></i>
                                         </label>
                                     </div>
@@ -156,13 +156,13 @@
             });
         @endif
 
-        function terima_button(id, karyawan, tanggal, ajuan) {
+        function terima_button(id, peserta_magang, tanggal, ajuan) {
             Swal.fire({
                 title: 'Pengajuan Presensi Diterima',
                 html: "<p>Apakah Anda menerima pengajuan presensi?</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + karyawan + "</b>" +
+                    "<b>Karyawan: " + peserta_magang + "</b>" +
                     "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
                     "</div>",
                 icon: 'warning',
@@ -206,13 +206,13 @@
             })
         }
 
-        function tolak_button(id, karyawan, tanggal, ajuan) {
+        function tolak_button(id, peserta_magang, tanggal, ajuan) {
             Swal.fire({
                 title: 'Pengajuan Presensi Ditolak',
                 html: "<p>Apakah Anda menolak pengajuan presensi?</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + karyawan + "</b>" +
+                    "<b>Peserta Magang: " + peserta_magang + "</b>" +
                     "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
                     "</div>",
                 icon: 'warning',
@@ -256,13 +256,13 @@
             })
         }
 
-        function batal_button(id, karyawan, tanggal, ajuan) {
+        function batal_button(id, peserta_magang, tanggal, ajuan) {
             Swal.fire({
                 title: 'Pengajuan Presensi Dibatalkan',
                 html: "<p>Apakah Anda membatalkan pengajuan presensi?</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + karyawan + "</b>" +
+                    "<b>Karyawan: " + peserta_magang + "</b>" +
                     "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
                     "</div>",
                 icon: 'warning',

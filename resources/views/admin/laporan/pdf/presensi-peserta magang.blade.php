@@ -135,7 +135,7 @@
             <tr>
                 <td>Jurusan</td>
                 <td>:</td>
-                <td>{{ $peserta_magang->jabatan }}</td>
+                <td>{{ $peserta_magang->jobtrain }}</td>
             </tr>
             <tr>
                 <td>JobTrain</td>

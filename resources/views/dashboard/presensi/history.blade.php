@@ -7,7 +7,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "{{ route("karyawan.history.search") }}",
+                    url: "{{ route("peserta_magang.history.search") }}",
                     data: {
                         _token: "{{ csrf_token() }}",
                         bulan: $("#bulan").val(),

@@ -7,7 +7,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "{{ route("karyawan.izin.search") }}",
+                    url: "{{ route("peserta_magang.izin.search") }}",
                     data: {
                         _token: "{{ csrf_token() }}",
                         bulan: $("#bulan").val(),
@@ -52,7 +52,7 @@
                     <div class="rounded-t-4 mb-0 p-4 pb-0">
                         <div class="flex justify-between items-center">
                             <h6 class="mb-2 font-bold dark:text-white">Data Izin / Sakit</h6>
-                            <a href="{{ route('karyawan.izin.create') }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('peserta_magang.izin.create') }}" class="btn btn-primary btn-sm">
                                 <i class="ri-add-fill"></i>
                                 Pengajuan
                             </a>

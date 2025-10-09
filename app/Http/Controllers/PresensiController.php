@@ -266,7 +266,7 @@ class PresensiController extends Controller
             ->get();
 
         // return view('admin.laporan.pdf.presensi-peserta_magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
-        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-peserta_magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
+        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-peserta magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
         return $pdf->stream($title . ' ' . $peserta_magang->nama_lengkap . '.pdf');
     }
 
@@ -282,7 +282,7 @@ class PresensiController extends Controller
             ->select(
                 'p.npm',
                 'k.nama_lengkap as nama_peserta_magang',
-                'k.jabatan as jurusan_peserta_magang',
+                'k.jobtrain as jurusan_peserta_magang',
                 'd.nama as nama_jobtrain'
             )
             ->selectRaw("COUNT(p.npm) as total_kehadiran, SUM(IF (jam_masuk > '08:00',1,0)) as total_terlambat")
@@ -320,7 +320,7 @@ class PresensiController extends Controller
         if ($request->PesertaMagang) {
             $query->where('k.nama_lengkap', 'LIKE', '%' . $request->PesertaMagang . '%');
         }
-        if ($request->jobtrainn) {
+        if ($request->jobtrain) {
             $query->where('d.id', $request->jobtrain);
         }
         if ($request->tanggal_awal) {

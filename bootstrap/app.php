@@ -12,8 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'karyawan' => App\Http\Middleware\Karyawan::class,
-            'login-karyawan' => App\Http\Middleware\LoginKaryawan::class,
+            'peserta_magang' => App\Http\Middleware\PesertaMagang::class,
+            'login-peserta-magang' => App\Http\Middleware\LoginPesertaMagang::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

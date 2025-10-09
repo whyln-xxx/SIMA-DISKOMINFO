@@ -40,9 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'karyawan' => [
+        'peserta_magang' => [
             'driver' => 'session',
-            'provider' => 'karyawans',
+            'provider' => 'peserta_magangs',
         ],
     ],
 
@@ -68,9 +68,9 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-        'karyawans' => [
+        'peserta_magangs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Karyawan::class,
+            'model' => App\Models\PesertaMagang::class,
         ],
 
         // 'users' => [
