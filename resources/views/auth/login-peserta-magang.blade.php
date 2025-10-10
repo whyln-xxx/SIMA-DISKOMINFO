@@ -47,10 +47,8 @@
                                             <div class="mb-4">
                                                 <input type="password" name="password" placeholder="Password" class="focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none dark:bg-gray-950 dark:text-white/80 dark:placeholder:text-white/80" required />
                                             </div>
-                                            <div class="min-h-6 mb-0.5 flex items-center text-left">
-                                                <input id="rememberMe" name="remember" type="checkbox" class="checkbox checkbox-sm border-gray-200 checked:border-blue-500/95 checked:bg-blue-500/95 [--chkbg:theme(colors.blue.500)] [--chkfg:white]" />
-                                                <label class="ml-2 cursor-pointer select-none text-sm font-normal text-slate-700" for="rememberMe">Remember me</label>
-                                            </div>
+                                            <div class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 px-1 pt-0 text-center sm:px-6">
+                                        <p class="mx-auto mb-6 text-sm leading-normal">Are you an Admin? <a href="{{ route('login') }}" class="bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text font-semibold text-transparent">Click Here</a></p>
                                             <div class="text-center">
                                                 <button type="submit" class="active:opacity-85 hover:shadow-xs tracking-tight-rem bg-150 bg-x-25 mb-0 mt-6 inline-block w-full cursor-pointer rounded-lg border-0 bg-blue-500 px-16 py-3.5 text-center align-middle text-sm font-bold leading-normal text-white shadow-md transition-all ease-in hover:-translate-y-px">Login</button>
                                             </div>

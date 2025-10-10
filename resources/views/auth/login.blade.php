@@ -31,6 +31,9 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
+        <div class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 px-1 pt-0 text-center sm:px-6">
+        <p class="mx-auto mb-6 text-sm leading-normal">Are you a Job Train? <a href="{{ route('login.view') }}" class="bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text font-semibold text-transparent">Click Here</a></p>
+    </div>
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
