@@ -19,6 +19,7 @@ class PesertaMagang extends Authenticatable
         'npm',
         'jobtrain_id',
         'nama_lengkap',
+        'foto',
         'jurusan',
         'telepon',
         'email',

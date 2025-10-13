@@ -13,22 +13,22 @@
                 <div class="flex w-full flex-wrap gap-2 md:flex-nowrap items-end">
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
-                            <span class="label-text">NIK</span>
+                            <span class="label-text">NPM</span>
                         </div>
-                        <input type="text" name="nik" placeholder="NIK" class="input input-bordered w-full" value="{{ request()->nik }}" />
+                        <input type="text" name="npm" placeholder="NPM" class="input input-bordered w-full" value="{{ request()->npm }}" />
                     </label>
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
-                            <span class="label-text">Nama Karyawan</span>
+                            <span class="label-text">Nama Peserta</span>
                         </div>
-                        <input type="text" name="karyawan" placeholder="Nama Karyawan" class="input input-bordered w-full" value="{{ request()->peserta_magang }}" />
+                        <input type="text" name="peserta" placeholder="Nama Peserta" class="input input-bordered w-full" value="{{ request()->peserta_magang }}" />
                     </label>
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
-                            <span class="label-text">Departemen</span>
+                            <span class="label-text">Job Train</span>
                         </div>
-                        <select name="departemen" class="select select-bordered">
-                            <option value="0">Semua Departemen</option>
+                        <select name="jobtrain" class="select select-bordered">
+                            <option value="0">Semua Job Train</option>
                             @foreach ($jobtrain as $item)
                                 <option value="{{ $item->id }}" {{ request()->jobtrain == $item->id ? "selected" : "" }}>{{ $item->nama }}</option>
                             @endforeach
@@ -78,8 +78,8 @@
                 <thead class="text-sm text-gray-800 dark:text-gray-300">
                     <tr>
                         <th></th>
-                        <th>Nama Karyawan / NIK</th>
-                        <th>Departemen</th>
+                        <th>Nama Peserta / NPM</th>
+                        <th>Job train</th>
                         <th>Tanggal Pengajuan</th>
                         <th>Status</th>
                         <th>Keterangan</th>
@@ -90,17 +90,17 @@
                     @foreach ($pengajuan as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $value + 1 }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_peserta_magang }} - {{ $item->npm }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_jobtrain }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format("l, d-m-Y") }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama_peserta_magang }} - {{ $item->npm }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama_jobtrain }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format("l, d-m-Y") }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">
                                 @if ($item->status == "I")
                                     <span>Izin</span>
                                 @elseif ($item->status == "S")
                                     <span>Sakit</span>
                                 @endif
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->keterangan }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->keterangan }}</td>
                             <td class="flex justify-center gap-2">
                                 @if ($item->status_approved == 1)
                                     <label class="btn btn-warning btn-sm tooltip flex items-center" data-tip="Diterima" onclick="return terima_button('{{ $item->id }}', '{{ $item->nama_peserta_magang }}', '{{ \Carbon\Carbon::parse($item->tanggal_pengajuan)->format('d-m-Y') }}', 'terima')">
@@ -162,7 +162,7 @@
                 html: "<p>Apakah Anda menerima pengajuan presensi?</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + peserta_magang + "</b>" +
+                    "<b>Peserta: " + peserta_magang + "</b>" +
                     "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
                     "</div>",
                 icon: 'warning',
@@ -262,7 +262,7 @@
                 html: "<p>Apakah Anda membatalkan pengajuan presensi?</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + peserta_magang + "</b>" +
+                    "<b>Peserta: " + peserta_magang + "</b>" +
                     "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
                     "</div>",
                 icon: 'warning',

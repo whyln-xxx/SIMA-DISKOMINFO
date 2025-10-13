@@ -82,16 +82,16 @@ Follow the steps below to clone and run the project in your local environment:
 
 - ### **Dashboard**
 
-<img src="https://github.com/user-attachments/assets/a6f11269-960e-4c56-a95b-3d533e646f42" alt="Halaman Dashboard Karyawan" width="" />
+<img src="https://github.com/user-attachments/assets/a6f11269-960e-4c56-a95b-3d533e646f42" alt="Halaman Dashboard Peserta" width="" />
 &nbsp;&nbsp;&nbsp;
 <img src="https://github.com/user-attachments/assets/272b17a6-07cc-4403-9b71-b88a249138ed" alt="Halaman Dashboard Admin" width="" />
 <br><br>
 
 - ### **Employee presence page**
 
-<img src="https://github.com/user-attachments/assets/45309e13-8256-4615-96fb-45ccc4a6dde1" alt="Halaman Histori Presensi Karyawan" width="" />
+<img src="https://github.com/user-attachments/assets/45309e13-8256-4615-96fb-45ccc4a6dde1" alt="Halaman Histori Presensi peserta" width="" />
 &nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/d1dab88a-d7e7-4365-a786-b2bd2c9808fe" alt="Halaman Izin Karyawan" width="" />
+<img src="https://github.com/user-attachments/assets/d1dab88a-d7e7-4365-a786-b2bd2c9808fe" alt="Halaman Izin Peserta" width="" />
 <br><br>
 
 - ### **Admin Panel**
@@ -100,7 +100,7 @@ Follow the steps below to clone and run the project in your local environment:
 &nbsp;&nbsp;&nbsp;
 <img src="https://github.com/user-attachments/assets/36f2fed3-29ba-4f89-9ecf-9a8b2f7a1eff" alt="Halaman Laporan Presensi" width="" />
 &nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/cd5b7067-6286-4254-a82a-fa67acfce39b" alt="Halaman Administrasi Izin Karyawan" width="" />
+<img src="https://github.com/user-attachments/assets/cd5b7067-6286-4254-a82a-fa67acfce39b" alt="Halaman Administrasi Izin Peserta" width="" />
 <br><br>
 =======
 # SIMA-DISKOMINFO

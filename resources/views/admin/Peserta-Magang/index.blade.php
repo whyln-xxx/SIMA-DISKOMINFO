@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                {{ __("Data Karyawan") }}
+                {{ __("Data Peserta") }}
             </h2>
             <label class="btn btn-primary btn-sm" for="create_modal">Tambah Data</label>
         </div>
@@ -12,7 +12,7 @@
         <div>
             <form action="{{ route("admin.peserta_magang") }}" method="get" enctype="multipart/form-data" class="my-3">
                 <div class="flex w-full flex-wrap gap-2 md:flex-nowrap">
-                    <input type="text" name="nama_peserta_magang" placeholder="Nama Karyawan" class="input input-bordered w-full md:w-1/2" value="{{ request()->nama_peserta_magang }}" />
+                    <input type="text" name="nama_peserta_magang" placeholder="Nama Peserta Magang" class="input input-bordered w-full md:w-1/2" value="{{ request()->nama_peserta_magang }}" />
                     <select class="select select-bordered w-full md:w-1/2" name="kode_jobtrain">
                         <option disabled selected>Pilih jobtrain!</option>
                         @foreach ($jobtrain as $item)
@@ -25,12 +25,12 @@
                 </div>
             </form>
         </div>
-        <div class="w-full overflow-x-auto rounded-md bg-slate-200 px-10">
+        <div class="w-full overflow-x-auto rounded-md bg-slate-100 px-10">
             <table id="tabelPresensi" class="table mb-4 w-full border-collapse items-center border-gray-200 align-top dark:border-white/40">
-                <thead class="text-sm text-gray-800 dark:text-gray-300">
+                <thead class="text-sm text-gray-800 dark:text-gray-700">
                     <tr>
                         <th></th>
-                        <th>JobTrain</th>
+                        <th>Job Train</th>
                         <th>Nama Lengkap</th>
                         <th>Foto</th>
                         <th>Jurusan</th>
@@ -43,27 +43,27 @@
                     @foreach ($peserta_magang as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $peserta_magang->firstItem() + $value }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jobtrain->kode }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_lengkap }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->jobtrain->kode }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama_lengkap }}</td>
                             <td>
                                 <div class="avatar">
                                     <div class="w-12 rounded-xl">
                                         @if ($item->foto)
-                                            <img src="{{ asset("storage/unggah/peserta_magang/$item->foto") }}" />
+                                            <img src="{{ asset('storage/unggah/peserta_magang/' . $item->foto) }}" alt="Foto Peserta">
                                         @else
                                             <img src="{{ asset("img/team-2.jpg") }}" />
                                         @endif
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jurusan }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->telepon }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->email }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->jurusan }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->telepon }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->email }}</td>
                             <td>
-                                <label class="btn btn-warning btn-sm" for="edit_button" onclick="return edit_button('{{ $item->nik }}')">
+                                <label class="btn btn-warning btn-sm" for="edit_button" onclick="return edit_button('{{ $item->npm }}')">
                                     <i class="ri-pencil-fill"></i>
                                 </label>
-                                <label class="btn btn-error btn-sm" onclick="return delete_button('{{ $item->nik }}', '{{ $item->nama_lengkap }}')">
+                                <label class="btn btn-error btn-sm" onclick="return delete_button('{{ $item->npm }}', '{{ $item->nama_lengkap }}')">
                                     <i class="ri-delete-bin-line"></i>
                                 </label>
                             </td>
@@ -94,11 +94,11 @@
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text font-semibold">
-                                <span class="label-text font-semibold">NIK<span class="text-red-500">*</span></span>
+                                <span class="label-text font-semibold">NPM<span class="text-red-500">*</span></span>
                             </span>
                         </div>
-                        <input type="text" name="nik" placeholder="NIK" class="input input-bordered w-full text-blue-700" value="{{ old("nik") }}" required />
-                        @error("nik")
+                        <input type="text" name="npm" placeholder="NPM" class="input input-bordered w-full text-blue-700" value="{{ old("npm") }}" required />
+                        @error("npm")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -223,14 +223,14 @@
             <div>
                 <form action="{{ route("admin.peserta_magang.update") }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" name="nik_lama" hidden>
+                    <input type="text" name="npm_lama" hidden>
                     <label class="form-control w-full">
                         <div class="label">
-                            <span class="label-text font-semibold">NIK<span class="text-red-500">*</span></span>
+                            <span class="label-text font-semibold">NPM<span class="text-red-500">*</span></span>
                             <span class="label-text-alt" id="loading_edit1"></span>
                         </div>
-                        <input type="text" name="nik" placeholder="NIK" class="input input-bordered w-full text-blue-700" required />
-                        @error("nik")
+                        <input type="text" name="npm" placeholder="NPM" class="input input-bordered w-full text-blue-700" required />
+                        @error("npm")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -368,7 +368,7 @@
             });
         @endif
 
-        function edit_button(nik) {
+        function edit_button(npm) {
             // Loading effect start
             let loading = `<span class="loading loading-dots loading-md text-purple-600"></span>`;
             $("#loading_edit1").html(loading);
@@ -386,7 +386,7 @@
                 url: "{{ route('admin.peserta_magang.edit') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "nik": nik
+                    "npm": npm
                 },
                 success: function(data) {
                     // console.log(data);
@@ -395,8 +395,8 @@
                         items.push(val);
                     });
 
-                    $("input[name='nik_lama']").val(items[0]);
-                    $("input[name='nik']").val(items[0]);
+                    $("input[name='npm_lama']").val(items[0]);
+                    $("input[name='npm']").val(items[0]);
                     $("input[name='nama_lengkap']").val(items[2]);
                     $("input[name='jurusan']").val(items[4]);
                     $("input[name='telepon']").val(items[5]);
@@ -429,13 +429,13 @@
             });
         }
 
-        function delete_button(nik, nama) {
+        function delete_button(npm, nama) {
             Swal.fire({
                 title: 'Apakah Anda yakin?',
                 html: "<p>Data yang dihapus tidak dapat dipulihkan kembali!</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + nama + "</b>" +
+                    "<b>Peserta: " + nama + "</b>" +
                     "</div>",
                 icon: 'warning',
                 showCancelButton: true,
@@ -450,7 +450,7 @@
                         url: "{{ route('admin.peserta_magang.delete') }}",
                         data: {
                             "_token": "{{ csrf_token() }}",
-                            "nik": nik
+                            "npm": npm
                         },
                         success: function(response) {
                             Swal.fire({

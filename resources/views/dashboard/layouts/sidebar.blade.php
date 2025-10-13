@@ -2,7 +2,7 @@
     <div class="h-19">
         <i class="ri-close-large-fill absolute right-0 top-0 cursor-pointer p-4 text-slate-400 opacity-50 dark:text-white xl:hidden" sidenav-close></i>
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700 dark:text-white" href="{{ route('dashboard.index') }}">
-            <img src="{{ asset('img/logo-ct-dark.png') }}" class="ease-nav-brand inline h-full max-h-8 max-w-full transition-all duration-200 dark:hidden" alt="main_logo" />
+            <img src="{{ asset('img/unnamed.jpg') }}" class="ease-nav-brand inline h-full max-h-8 max-w-full transition-all duration-200 dark:hidden" alt="main_logo" />
             <img src="{{ asset('img/unnamed.jpg') }}" class="ease-nav-brand hidden h-full max-h-8 max-w-full transition-all duration-200 dark:inline" alt="main_logo" />
             <span class="ease-nav-brand ml-1 font-semibold transition-all duration-200">SIMA DISKOMINFO</span>
         </a>

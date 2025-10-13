@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-blue-500 border-b border-gray-900">
+<nav x-data="{ open: false }" class="bg-slate-200 border-b border-slate-300">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -19,13 +19,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.peserta_magang')" :active="request()->routeIs('admin.peserta_magang')">
-                        {{ __('Data Karyawan') }}
+                        {{ __('Data Peserta') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.jobtrain')" :active="request()->routeIs('admin.jobtrain')">
-                        {{ __('Data Departemen') }}
+                        {{ __('Data JobTrain') }}
                     </x-nav-link>
                 </div>
 
@@ -110,13 +110,13 @@
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.peserta_magang')" :active="request()->routeIs('admin.peserta_magang')">
-                {{ __('Data Karyawan') }}
+                {{ __('Data Peserta') }}
             </x-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.jobtrain')" :active="request()->routeIs('admin.jobtrain')">
-                {{ __('Data Departemen') }}
+                {{ __('Data JobTrain') }}
             </x-responsive-nav-link>
         </div>
 

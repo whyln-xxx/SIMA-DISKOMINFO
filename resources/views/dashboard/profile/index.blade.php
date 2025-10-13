@@ -94,8 +94,8 @@
                         <div class="-mx-3 flex flex-wrap">
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">
                                 <div class="mb-4">
-                                    <label for="nik" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">NIK</label>
-                                    <input type="text" name="nik" value="{{ $peserta_magang->npm }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
+                                    <label for="npm" class="mb-2 ml-1 inline-block text-xs font-bold text-slate-700 dark:text-white/80">NPM</label>
+                                    <input type="text" name="npm" value="{{ $peserta_magang->npm }}" class="focus:shadow-primary-outline dark:bg-slate-850 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none dark:text-white" readonly />
                                 </div>
                             </div>
                             <div class="md:flex-0 w-full max-w-full shrink-0 px-3 md:w-6/12">

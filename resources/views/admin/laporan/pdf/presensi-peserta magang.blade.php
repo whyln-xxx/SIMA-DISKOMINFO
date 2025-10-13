@@ -103,11 +103,11 @@
                         PERIODE {{ strtoupper(\Carbon\Carbon::make($bulan)->format("F")) }} TAHUN {{ \Carbon\Carbon::make($bulan)->format("Y") }} <br>
                     </span>
                     <span class="title" style="margin-left: 0.5rem;">
-                        PT ABCD DEFG <br>
+                        DISKOMINFO GARUT <br>
                     </span>
                     <span style="margin-left: 0.5rem;">
-                        <i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, vero.</i>
-                    </span>
+                        <i>Jln.Pembangunan</i>
+                    </span
                 </td>
             </tr>
         </table>
@@ -128,7 +128,7 @@
                 <td>{{ $peserta_magang->npm }}</td>
             </tr>
             <tr>
-                <td>Nama Peserta Magang</td>
+                <td>Nama</td>
                 <td>:</td>
                 <td>{{ $peserta_magang->nama_lengkap }}</td>
             </tr>
@@ -215,16 +215,16 @@
         <table class="pengesahan-atasan">
             <tr class="tempat">
                 <td colspan="2">
-                    Tenetur Nostrum, {{ \Carbon\Carbon::now()->format("d F Y") }}
+                    Garut, {{ \Carbon\Carbon::now()->format("d F Y") }}
                 </td>
             </tr>
             <tr class="atasan">
                 <td>
-                    <u>Lorem Ipsum Dolor</u> <br>
-                    <i><b>HRD Manager</b></i>
+                    <u>Bu Laras<u> <br>
+                    <i><b>Pembimbing</b></i>
                 </td>
                 <td>
-                    <u>Adipisicing Elit Unde</u> <br>
+                    <u></u> <br>
                     <i><b>Direktur</b></i>
                 </td>
             </tr>

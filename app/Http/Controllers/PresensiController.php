@@ -30,8 +30,9 @@ class PresensiController extends Controller
     {
         $jenisPresensi = $request->jenis;
         $npm = auth()->guard('peserta_magang')->user()->npm;
-        $tglPresensi = date('Y-m-d');
-        $jam = date('H:i:s');
+        $tglPresensi = Carbon::now()->format('Y-m-d');
+        $jam = Carbon::now()->format('H:i:s');
+        
 
         $lokasi = $request->lokasi;
         $folderPath = "public/unggah/presensi/";
@@ -252,7 +253,7 @@ class PresensiController extends Controller
 
     public function laporanPresensiPesertaMagang(Request $request)
     {
-        $title = 'Laporan Presensi PesertaMagang';
+        $title = 'Laporan Presensi Peserta Magang';
         $bulan = $request->bulan;
         $peserta_magang = PesertaMagang::query()
             ->with('jobtrain')

@@ -60,9 +60,9 @@ class PesertaMagangController extends Controller
 
     public function indexAdmin(Request $request)
     {
-        $title = "Data PesertaMagang";
+        $title = "Data Peserta Magang";
 
-        $jobtrain = PesertaMagang::get();
+        $jobtrain = JobTrain::get();
 
         $query = PesertaMagang::join('jobtrain as d', 'peserta_magang.jobtrain_id', '=', 'd.id')->select('peserta_magang.*', 'd.kode')->orderBy('d.kode', 'asc')->orderBy('peserta_magang.nama_lengkap', 'asc');
         if ($request->nama_peserta_magang) {
@@ -88,21 +88,23 @@ class PesertaMagangController extends Controller
             'email' => 'required|string|email|max:255|unique:peserta_magang,email',
             'password' => 'required',
         ]);
+
         $data['password'] = Hash::make($data['password']);
+
         if ($request->hasFile('foto')) {
-            $foto = $request->npm . "." . $request->file('foto')->getClientOriginalExtension();
+            $foto = $request->npm . '.' . $request->file('foto')->getClientOriginalExtension();
+            $request->file('foto')->storeAs('public/unggah/peserta_magang', $foto);
+            $data['foto'] = $foto;
+        } else {
+            $data['foto'] = null;
         }
 
         $create = PesertaMagang::create($data);
 
         if ($create) {
-            if ($request->hasFile('foto')) {
-                $folderPath = "public/unggah/peserta_magang/";
-                $request->file('foto')->storeAs($folderPath, $foto);
-            }
-            return to_route('admin.peserta_magang')->with('success', 'Data Peserta Maganng berhasil disimpan');
+            return redirect()->back()->with('success', 'Peserta magang berhasil ditambahkan!');
         } else {
-            return to_route('admin.peserta_magang')->with('error', 'Data Peserta Magang gagal disimpan');
+            return redirect()->back()->with('error', 'Gagal menambahkan peserta magang.');
         }
     }
 

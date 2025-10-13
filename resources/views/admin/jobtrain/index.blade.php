@@ -21,7 +21,7 @@
         </div>
         <div class="w-full overflow-x-auto rounded-md bg-slate-200 px-10">
             <table id="tabelPresensi" class="table mb-4 w-full border-collapse items-center border-gray-200 align-top dark:border-white/40">
-                <thead class="text-sm text-gray-800 dark:text-gray-300">
+                <thead class="text-sm text-gray-800 dark:text-gray-700">
                     <tr>
                         <th></th>
                         <th>Kode</th>
@@ -33,8 +33,8 @@
                     @foreach ($jobtrain as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $jobtrain ->firstItem() + $value }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->kode }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->kode }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama }}</td>
                             <td>
                                 <label class="btn btn-warning btn-sm" for="edit_button" onclick="return edit_button('{{ $item->id }}')">
                                     <i class="ri-pencil-fill"></i>
@@ -73,6 +73,18 @@
                                 <span class="label-text font-semibold">Kode<span class="text-red-500">*</span></span>
                             </span>
                         </div>
+                        <select name="jobtrain_id" class="select select-bordered w-full text-blue-700">
+                            <option disabled selected>Pilih JobTrain!</option>
+                            @foreach ($jobtrain as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == old("jobtrain_id")) selected @endif>{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                        @error("jobtrain_id")
+                            <div class="label">
+                                <span class="label-text-alt text-sm text-error">{{ $message }}</span>
+                            </div>
+                        @enderror
+
                         <input type="text" name="kode" placeholder="Kode" class="input input-bordered w-full text-blue-700" value="{{ old("kode") }}" required />
                         @error("kode")
                             <div class="label">
@@ -205,7 +217,7 @@
                 html: "<p>Data yang dihapus tidak dapat dipulihkan kembali!</p>" +
                     "<div class='divider'></div>" +
                     "<div class='flex flex-col'>" +
-                    "<b>Karyawan: " + nama + "</b>" +
+                    "<b>Peserta: " + nama + "</b>" +
                     "</div>",
                 icon: 'warning',
                 showCancelButton: true,

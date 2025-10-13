@@ -20,12 +20,12 @@
         </div>
         <div class="w-full overflow-x-auto rounded-md bg-slate-200 px-10">
             <table id="tabelPresensi" class="table mb-4 w-full border-collapse items-center border-gray-200 align-top dark:border-white/40">
-                <thead class="text-sm text-gray-800 dark:text-gray-300">
+                <thead class="text-sm text-gray-800 dark:text-gray-700">
                     <tr>
                         <th></th>
-                        <th>NIK</th>
-                        <th>Nama Karyawan</th>
-                        <th>Departemen</th>
+                        <th>NPM</th>
+                        <th>Nama Peserta</th>
+                        <th>Job Train</th>
                         <th>Jam Masuk</th>
                         <th>Foto & Lokasi</th>
                         <th>Jam Keluar</th>
@@ -37,11 +37,11 @@
                     @foreach ($monitoring as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $monitoring->firstItem() + $value }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nik }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_peserta_magang }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->nama_jobtrain }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->jam_masuk }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->npm }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama_peserta_magang }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->nama_jobtrain }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->jam_masuk }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">
                                 <div class="avatar">
                                     <div class="w-24 rounded">
                                         <label for="view_modal" class="cursor-pointer" onclick="return viewLokasi('lokasi_masuk', '{{ $item->npm }}')">
@@ -50,18 +50,18 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">
                                 @if ($item->jam_keluar)
                                     {{ $item->jam_keluar }}
                                 @else
                                     <div class="w-fit rounded-md bg-error p-1 text-white">Belum Presensi</div>
                                 @endif
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">
                                 <div class="avatar">
                                     <div class="w-24 rounded">
                                         @if ($item->foto_keluar)
-                                            <label for="view_modal" class="cursor-pointer" onclick="return viewLokasi('lokasi_keluar', '{{ $item->nik }}')">
+                                            <label for="view_modal" class="cursor-pointer" onclick="return viewLokasi('lokasi_keluar', '{{ $item->npm }}')">
                                                 <img src="{{ asset("storage/unggah/presensi/$item->foto_keluar") }}" alt="{{ $item->foto_keluar }}" />
                                             </label>
                                         @else
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">
                                 @if ($item->jam_masuk > Carbon\Carbon::make("08:00:00")->format("H:i:s"))
                                     @php
                                         $masuk = Carbon\Carbon::make($item->jam_masuk);
@@ -162,7 +162,7 @@
             }).addTo(map);
         }
 
-        function viewLokasi(tipe, nik) {
+        function viewLokasi(tipe, npm) {
             // Loading effect start
             let loading = `<span class="loading loading-dots loading-md text-purple-600"></span>`;
             $("#loading_edit1").html(loading);
@@ -173,7 +173,7 @@
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "tipe": tipe,
-                    "nik": nik,
+                    "npm": npm,
                 },
                 success: function(data) {
                     // console.log(data);

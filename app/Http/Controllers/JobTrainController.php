@@ -10,7 +10,7 @@ class JobTrainController extends Controller
 {
     public function index(Request $request)
     {
-        $title = "Data Job Train";
+        $title = "Data JobTrain";
 
         $query = JobTrain::orderBy('kode', 'asc');
         if ($request->cari_jobtrain) {
