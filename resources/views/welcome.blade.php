@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Presensi Diskominfo</title>
+    <title>SIMA Diskominfo</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,12 +62,11 @@
 <body>
     <div class="container">
         <header class="topbar">
-            <div class="brand" aria-label="Brand">
-                <div class="logo">
-                    <img src="{{ asset('images/Ellipse 1.svg') }}" alt="Logo Diskominfo" class="h-10 w-auto">
-                </div>
-                <div class="title">PRESENSI <span class="accent">DISKOMINFO</span></div>
-            </div>
+            <a href="{{ url('/') }}" class="brand" aria-label="Brand">
+                {{-- Logo menggunakan helper asset() dan kelas CSS logo-img --}}
+                <img src="{{ asset('img/admin 1.svg') }}" alt="Logo Diskominfo" class="logo-img" /> 
+                <div class="title">SIMA <span class="accent">DISKOMINFO</span></div>
+            </a>
             <!-- login links removed per request -->
         </header>
 

@@ -59,12 +59,19 @@
                                     </div> --}}
                                 </div>
                             </div>
-                            <div class="flex-0 absolute right-0 top-0 my-auto hidden h-full w-6/12 max-w-full flex-col justify-center px-3 pr-0 text-center lg:flex">
-                                <div class="relative m-4 flex h-full flex-col justify-center overflow-hidden rounded-xl bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg')] bg-cover px-24">
-                                    <span class="absolute left-0 top-0 h-full w-full bg-gradient-to-tl from-blue-500 to-violet-500 bg-cover bg-center opacity-60"></span>
-                                    <h4 class="z-20 mt-12 font-bold text-white">"Attention is the new currency"</h4>
-                                    <p class="z-20 text-white">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
-                                </div>
+                            <?php
+// 1. Tentukan jalur ke gambar di folder public/img/
+// Ganti DISKOMINFO.png jika nama file Anda berbeda.
+$illustrationPath = asset('img/aku-kamu.png'); 
+?>
+
+<div class="flex-0 absolute right-0 top-0 my-auto hidden h-full w-6/12 max-w-full flex-col justify-center px-3 pr-0 text-center lg:flex">
+    
+    <div 
+        class="relative m-4 flex h-full flex-col justify-center overflow-hidden rounded-xl bg-cover px-24" 
+        style="background-image: url('{{ $illustrationPath }}'); background-size: cover; background-position: center;"
+    </div>
+</div>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
     <div class="container mx-auto px-5 pt-5">
         <div class="w-full overflow-x-auto rounded-md bg-slate-200 px-10">
             <table id="tabelPresensi" class="table mb-4 w-full border-collapse items-center border-gray-200 align-top dark:border-white/40">
-                <thead class="text-sm text-gray-800 dark:text-gray-300">
+                <thead class="text-sm text-gray-800 dark:text-gray-700">
                     <tr>
                         <th></th>
                         <th>Kota</th>
@@ -26,11 +26,11 @@
                     @foreach ($lokasiKantor as $value => $item)
                         <tr class="hover">
                             <td class="font-bold">{{ $lokasiKantor->firstItem() + $value }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->kota }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->alamat }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->latitude }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">{{ $item->longitude }}</td>
-                            <td class="text-slate-500 dark:text-slate-300">
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->kota }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->alamat }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->latitude }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->longitude }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">
                                 @if ($item->is_used)
                                     <i class="ri-checkbox-circle-fill text-lg text-success"></i>
                                 @else

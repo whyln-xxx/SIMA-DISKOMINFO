@@ -39,7 +39,7 @@ class PesertaMagangController extends Controller
             ]);
 
         } elseif ($request->password == null) {
-            $update = PesertaMagang::where('npm', auth()->guard('peserta_maganng')->user()->npm)->update([
+            $update = PesertaMagang::where('npm', auth()->guard('peserta_magang')->user()->npm)->update([
                 'nama_lengkap' => $request->nama_lengkap,
                 'telepon' => $request->telepon,
                 'foto' => $foto,
