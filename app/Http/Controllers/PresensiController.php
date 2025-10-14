@@ -32,7 +32,18 @@ class PresensiController extends Controller
         $npm = auth()->guard('peserta_magang')->user()->npm;
         $tglPresensi = Carbon::now()->format('Y-m-d');
         $jam = Carbon::now()->format('H:i:s');
-        
+        $hari = Carbon::now()->format('N');
+
+        $hariKerja = ($hari == 5) ? 'Jumat' : 'Senin-Kamis';
+        $jamKerja = DB::table('jam_kerja')->where('hari', $hariKerja)->first();
+
+        if (!$jamKerja) {
+        return response()->json([
+            'status' => 500,
+            'success' => false,
+            'message' => 'Jam kerja tidak ditemukan.',
+        ]);
+    }
 
         $lokasi = $request->lokasi;
         $folderPath = "public/unggah/presensi/";
