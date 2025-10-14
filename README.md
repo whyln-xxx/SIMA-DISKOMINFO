@@ -76,6 +76,7 @@ Follow the steps below to clone and run the project in your local environment:
     ```bash
     npm run dev
     php artisan serve
+    php artisan storage:link
     ```
 
 ## Screenshot
