@@ -14,7 +14,7 @@
                 @csrf
                 <div class="flex w-full flex-wrap gap-2 lg:flex-nowrap">
                     <input type="month" name="bulan" class="input input-bordered w-full" value="{{ Carbon\Carbon::now()->format("Y-m") }}" required />
-                    <select name="peserta magang" class="select select-bordered w-full text-blue-700" required>
+                    <select name="peserta_magang" class="select select-bordered w-full text-blue-700" required>
                         <option disabled selected>Pilih Peserta!</option>
                         @foreach ($peserta_magang as $item)
                             <option value="{{ $item->npm }}">{{ $item->nama_lengkap }}</option>

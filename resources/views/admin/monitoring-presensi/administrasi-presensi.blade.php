@@ -255,55 +255,59 @@
                 }
             })
         }
-
-        function batal_button(id, peserta_magang, tanggal, ajuan) {
-            Swal.fire({
-                title: 'Pengajuan Presensi Dibatalkan',
-                html: "<p>Apakah Anda membatalkan pengajuan presensi?</p>" +
-                    "<div class='divider'></div>" +
-                    "<div class='flex flex-col'>" +
-                    "<b>Peserta: " + peserta_magang + "</b>" +
-                    "<b>Tanggal Pengajuan: " + tanggal + "</b>" +
-                    "</div>",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#6419E6',
-                cancelButtonColor: '#F87272',
-                confirmButtonText: 'Batalkan',
-                cancelButtonText: 'Cancel',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "post",
-                        url: "{{ route("admin.administrasi-presensi.persetujuan") }}",
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            "id": id,
-                            "ajuan": ajuan
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Berhasil',
-                                text: response.message,
-                                icon: 'success',
-                                confirmButtonColor: '#6419E6',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
-                                }
-                            });
-                        },
-                        error: function(response) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Gagal',
-                                text: response.responseJSON.message
-                            })
+    function batal_button(id, peserta_magang, tanggal, ajuan) {
+    Swal.fire({
+        title: 'Pengajuan Presensi Dibatalkan',
+        html: `
+            <p>Apakah Anda membatalkan pengajuan presensi?</p>
+            <hr style="margin:10px 0;">
+            <div style="display:flex; flex-direction:column; gap:4px; text-align:left;">
+                <b>Peserta: ${peserta_magang}</b>
+                <b>Tanggal Pengajuan: ${tanggal}</b>
+            </div>
+        `,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#6419E6',
+        cancelButtonColor: '#F87272',
+        confirmButtonText: 'Ya, Batalkan',
+        cancelButtonText: 'Tidak',
+        allowOutsideClick: false, // tidak bisa ditutup klik di luar
+        allowEscapeKey: false,    // tidak bisa ditutup pakai ESC
+        focusConfirm: true        // tombol confirm langsung aktif/fokus
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "post",
+                url: "{{ route('admin.administrasi-presensi.persetujuan') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "ajuan": ajuan
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Berhasil',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonColor: '#6419E6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
                         }
                     });
+                },
+                error: function(response) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: response.responseJSON.message
+                    })
                 }
-            })
+            });
         }
+    });
+}
     </script>
 </x-app-layout>

@@ -25,7 +25,7 @@
                         <th></th>
                         <th>NPM</th>
                         <th>Nama Peserta</th>
-                        <th>Job Train</th>
+                        <th>Job Trainer</th>
                         <th>Jam Masuk</th>
                         <th>Foto & Lokasi</th>
                         <th>Jam Keluar</th>

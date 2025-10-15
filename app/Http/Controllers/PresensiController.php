@@ -277,6 +277,8 @@ class PresensiController extends Controller
             ->orderBy("tanggal_presensi", "asc")
             ->get();
 
+             $jamKerja = DB::table('jam_kerja')->where('id', 1)->first();
+
         // return view('admin.laporan.pdf.presensi-peserta_magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
         $pdf = Pdf::loadView('admin.laporan.pdf.presensi-peserta magang', compact('title', 'bulan', 'peserta_magang', 'riwayatPresensi'));
         return $pdf->stream($title . ' ' . $peserta_magang->nama_lengkap . '.pdf');
@@ -294,7 +296,7 @@ class PresensiController extends Controller
             ->select(
                 'p.npm',
                 'k.nama_lengkap as nama_peserta_magang',
-                'k.jobtrain as jurusan_peserta_magang',
+                'k.jurusan as jurusan_peserta_magang',
                 'd.nama as nama_jobtrain'
             )
             ->selectRaw("COUNT(p.npm) as total_kehadiran, SUM(IF (jam_masuk > '08:00',1,0)) as total_terlambat")
@@ -304,11 +306,11 @@ class PresensiController extends Controller
                 'k.jurusan',
                 'd.nama'
             )
-            ->orderBy("tanggal_presensi", "asc")
+            ->orderBy('k.nama_lengkap', 'asc')
             ->get();
 
         // return view('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
-        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
+        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-peserta magang', compact('title', 'bulan', 'riwayatPresensi'));
         return $pdf->stream($title . '.pdf');
     }
 

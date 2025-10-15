@@ -25,7 +25,7 @@
                     <tr>
                         <th></th>
                         <th>Kode</th>
-                        <th>Nama</th>
+                        <th>Job Trainer</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>

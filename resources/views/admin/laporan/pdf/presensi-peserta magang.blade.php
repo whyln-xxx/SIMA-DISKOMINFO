@@ -93,7 +93,7 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 30px;">
-                    <img src="{{ public_path('img/team-2.jpg') }}" alt="logo" width="100" height="100" style="border-radius: 21px" />
+                    <img src="{{ public_path('img/logo 2.png') }}" alt="logo" width="100" height="100" style="border-radius: 21px" />
                 </td>
                 <td>
                     <span class="title" style="margin-left: 0.5rem;">
@@ -106,7 +106,8 @@
                         DISKOMINFO GARUT <br>
                     </span>
                     <span style="margin-left: 0.5rem;">
-                        <i>Jln.Pembangunan</i>
+                        <i>Jl. Pembangunan No.181, Sukagalih, Kec. Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151
+                    </span></i>
                     </span
                 </td>
             </tr>
@@ -135,7 +136,7 @@
             <tr>
                 <td>Jurusan</td>
                 <td>:</td>
-                <td>{{ $peserta_magang->jobtrain }}</td>
+                <td>{{ $peserta_magang->jurusan }}</td>
             </tr>
             <tr>
                 <td>JobTrain</td>
@@ -187,14 +188,14 @@
                             @if ($item->foto_keluar)
                                 <img src="{{ public_path("storage/unggah/presensi/$item->foto_keluar") }}" alt="{{ $item->foto_keluar }}" width="50" height="50" style="border-radius: 0.5rem" />
                             @else
-                                <img src="{{ public_path("img/bruce-mars.jpg") }}" alt="{{ $item->foto_keluar }}" width="50" height="50" style="border-radius: 0.5rem" />
+                                <img src="{{ public_path("img/") }}" alt="{{ $item->foto_keluar }}" width="50" height="50" style="border-radius: 0.5rem" />
                             @endif
                         </td>
                         <td>
-                            @if ($item->jam_masuk > Carbon\Carbon::make("08:00:00")->format("H:i:s"))
+                            @if ($item->jam_masuk > Carbon\Carbon::make("07:30:00")->format("H:i:s"))
                                 @php
                                     $masuk = Carbon\Carbon::make($item->jam_masuk);
-                                    $batas = Carbon\Carbon::make("08:00:00");
+                                    $batas = Carbon\Carbon::make("07:45:00");
                                     $diff = $masuk->diff($batas);
                                     if ($diff->format("%h") != 0) {
                                         $selisih = $diff->format("%h jam %I menit");

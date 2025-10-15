@@ -27,5 +27,6 @@ class JamKerjaSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+        
     }
 }

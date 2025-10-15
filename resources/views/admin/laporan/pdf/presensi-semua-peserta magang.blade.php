@@ -93,7 +93,7 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 30px;">
-                    <img src="{{ public_path('img/team-2.jpg') }}" alt="logo" width="100" height="100" style="border-radius: 21px" />
+                    <img src="{{ public_path('img/logo 2.png') }}" alt="logo" width="100" height="100" style="border-radius: 21px" />
                 </td>
                 <td>
                     <span class="title" style="margin-left: 0.5rem;">
@@ -103,10 +103,10 @@
                         PERIODE {{ strtoupper(\Carbon\Carbon::make($bulan)->format("F")) }} TAHUN {{ \Carbon\Carbon::make($bulan)->format("Y") }} <br>
                     </span>
                     <span class="title" style="margin-left: 0.5rem;">
-                        PT ABCD DEFG <br>
+                        DISKOMINFO GARUT <br>
                     </span>
                     <span style="margin-left: 0.5rem;">
-                        <i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, vero.</i>
+                        <i>Jl. Pembangunan No.181, Sukagalih, Kec. Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151</i>
                     </span>
                 </td>
             </tr>
@@ -148,16 +148,16 @@
         <table class="pengesahan-atasan">
             <tr class="tempat">
                 <td colspan="2">
-                    Tenetur Nostrum, {{ \Carbon\Carbon::now()->format("d F Y") }}
+                    Garut, {{ \Carbon\Carbon::now()->format("d F Y") }}
                 </td>
             </tr>
             <tr class="atasan">
                 <td>
-                    <u>Lorem Ipsum Dolor</u> <br>
-                    <i><b>HRD Manager</b></i>
+                    <u>Bu Laras</u> <br>
+                    <i><b>Pembimbing</b></i>
                 </td>
                 <td>
-                    <u>Adipisicing Elit Unde</u> <br>
+                    <u></u> <br>
                     <i><b>Direktur</b></i>
                 </td>
             </tr>

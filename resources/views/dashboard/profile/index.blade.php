@@ -44,7 +44,7 @@
                     <div class="my-auto w-auto max-w-full flex-none px-3">
                         <div class="h-full">
                             <h5 class="mb-1 dark:text-white">{{ $peserta_magang->nama_lengkap }}</h5>
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $peserta_magang->jobtrain }}</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $peserta_magang->jurusan }}</p>
                         </div>
                     </div>
                     @if (session()->get("success"))
