@@ -83,7 +83,7 @@ class PesertaMagangController extends Controller
             'jobtrain_id' => 'required',
             'nama_lengkap' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'jurusan' => 'required|string|max:255',
+            'pendidikan' => 'required|string|max:255',
             'telepon' => 'required|string|max:15',
             'email' => 'required|string|email|max:255|unique:peserta_magang,email',
             'password' => 'required',
@@ -122,7 +122,7 @@ class PesertaMagangController extends Controller
             'jobtrain_id' => 'required',
             'nama_lengkap' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'jurusan' => 'required|string|max:255',
+            'pendidikan' => 'required|string|max:255',
             'telepon' => 'required|string|max:15',
             'email' => ['required', 'email', Rule::unique('peserta_magang')->ignore($peserta_magang)],
         ]);

@@ -20,7 +20,7 @@ class PesertaMagang extends Authenticatable
         'jobtrain_id',
         'nama_lengkap',
         'foto',
-        'jurusan',
+        'pendidikan',
         'telepon',
         'email',
         'password',

@@ -33,7 +33,7 @@
                         <th>Job Train</th>
                         <th>Nama Lengkap</th>
                         <th>Foto</th>
-                        <th>Jurusan</th>
+                        <th>Pendidikan</th>
                         <th>Telepon</th>
                         <th>Email</th>
                         <th>Aksi</th>
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-slate-500 dark:text-slate-700">{{ $item->jurusan }}</td>
+                            <td class="text-slate-500 dark:text-slate-700">{{ $item->pendidikan }}</td>
                             <td class="text-slate-500 dark:text-slate-700">{{ $item->telepon }}</td>
                             <td class="text-slate-500 dark:text-slate-700">{{ $item->email }}</td>
                             <td>
@@ -138,11 +138,11 @@
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text font-semibold">
-                                <span class="label-text font-semibold">Jurusan<span class="text-red-500">*</span></span>
+                                <span class="label-text font-semibold">pendidikan<span class="text-red-500">*</span></span>
                             </span>
                         </div>
-                        <input type="text" name="jurusan" placeholder="Jurusan" class="input input-bordered w-full text-blue-700" value="{{ old("jurusan") }}" required />
-                        @error("jurusan")
+                        <input type="text" name="pendidikan" placeholder="pendidikan" class="input input-bordered w-full text-blue-700" value="{{ old("pendidikan") }}" required />
+                        @error("pendidikan")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -263,11 +263,11 @@
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
-                            <span class="label-text font-semibold">Jurusan<span class="text-red-500">*</span></span>
+                            <span class="label-text font-semibold">Pendidikan<span class="text-red-500">*</span></span>
                             <span class="label-text-alt" id="loading_edit4"></span>
                         </div>
-                        <input type="text" name="jurusan" placeholder="Jurusan" class="input input-bordered w-full text-blue-700" required />
-                        @error("jurusan")
+                        <input type="text" name="pendidikan" placeholder="Pendidikan" class="input input-bordered w-full text-blue-700" required />
+                        @error("pendidikan")
                             <div class="label">
                                 <span class="label-text-alt text-sm text-error">{{ $message }}</span>
                             </div>
@@ -398,7 +398,7 @@
                     $("input[name='npm_lama']").val(items[0]);
                     $("input[name='npm']").val(items[0]);
                     $("input[name='nama_lengkap']").val(items[2]);
-                    $("input[name='jurusan']").val(items[4]);
+                    $("input[name='pendidikan']").val(items[4]);
                     $("input[name='telepon']").val(items[5]);
                     $("input[name='email']").val(items[6]);
 

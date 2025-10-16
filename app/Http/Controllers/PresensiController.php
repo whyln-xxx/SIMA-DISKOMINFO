@@ -294,21 +294,21 @@ class PresensiController extends Controller
             ->select(
                 'p.npm',
                 'k.nama_lengkap as nama_peserta_magang',
-                'k.jobtrain as jurusan_peserta_magang',
+                'k.pendidikan as pendidikan_peserta_magang',
                 'd.nama as nama_jobtrain'
             )
             ->selectRaw("COUNT(p.npm) as total_kehadiran, SUM(IF (jam_masuk > '08:00',1,0)) as total_terlambat")
             ->groupBy(
                 'p.npm',
                 'k.nama_lengkap',
-                'k.jurusan',
-                'd.nama'
+                'k.pendidikan',
+                'd.nama',
             )
-            ->orderBy("tanggal_presensi", "asc")
+            ->orderBy("k.nama_lengkap", "asc")
             ->get();
 
         // return view('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
-        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-peserta_magang', compact('title', 'bulan', 'riwayatPresensi'));
+        $pdf = Pdf::loadView('admin.laporan.pdf.presensi-semua-peserta magang', compact('title', 'bulan', 'riwayatPresensi'));
         return $pdf->stream($title . '.pdf');
     }
 

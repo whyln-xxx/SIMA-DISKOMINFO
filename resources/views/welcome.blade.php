@@ -46,7 +46,7 @@
         .btn-purple{background:linear-gradient(135deg,var(--karyawan),var(--karyawan-2))}
         .btn-green{background:linear-gradient(135deg,var(--admin),var(--admin-2))}
         .btn:hover{transform:translateY(-1px)}
-        .btn:active{transform:translateY(0)}
+        .btn:active{transform:translateY(0)}   
 
         .hero-figure{position:relative}
         .blob{position:absolute;inset:auto 0 0 0;margin:auto;width:82%;height:58%;background:#3B2C71;border-radius:28px;filter:blur(.5px)}

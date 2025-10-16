@@ -8,7 +8,7 @@
         <title>Login</title>
 
         <link rel="apple-touch-icon" sizes="76x76" href="{{ asset("img/apple-icon.png") }}" />
-        <link rel="icon" type="image/png" href="{{ asset("img/favicon.png") }}" />
+        <link rel="icon" type="image/png" href="{{ asset("img/Ellipse 1.png") }}" />
 
         @include("dashboard.layouts.link")
         @vite(["resources/css/app.css", "resources/js/app.js"])
@@ -48,7 +48,7 @@
                                                 <input type="password" name="password" placeholder="Password" class="focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 text-sm font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none dark:bg-gray-950 dark:text-white/80 dark:placeholder:text-white/80" required />
                                             </div>
                                             <div class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 px-1 pt-0 text-center sm:px-6">
-                                        <p class="mx-auto mb-6 text-sm leading-normal">Are you an Admin? <a href="{{ route('login') }}" class="bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text font-semibold text-transparent">Click Here</a></p>
+                                        <p class="mx-auto mb-6 text-sm leading-normal">Are you an Admin? <a href="{{ route('login') }}" class="bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text font-semibold text-transparent">Click Here</a></p>    
                                             <div class="text-center">
                                                 <button type="submit" class="active:opacity-85 hover:shadow-xs tracking-tight-rem bg-150 bg-x-25 mb-0 mt-6 inline-block w-full cursor-pointer rounded-lg border-0 bg-blue-500 px-16 py-3.5 text-center align-middle text-sm font-bold leading-normal text-white shadow-md transition-all ease-in hover:-translate-y-px">Login</button>
                                             </div>
