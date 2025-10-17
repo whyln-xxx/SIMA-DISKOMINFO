@@ -134,9 +134,9 @@
                 <td>{{ $peserta_magang->nama_lengkap }}</td>
             </tr>
             <tr>
-                <td>Jurusan</td>
+                <td>Pendidikan</td>
                 <td>:</td>
-                <td>{{ $peserta_magang->jurusan }}</td>
+                <td>{{ $peserta_magang->pendidikan }}</td>
             </tr>
             <tr>
                 <td>JobTrain</td>

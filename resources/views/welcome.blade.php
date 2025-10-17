@@ -49,6 +49,41 @@
         .btn:active{transform:translateY(0)}
 
         .hero-figure{position:relative}
+        .hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  animation: float 6s ease-in-out infinite, pulse 8s ease-in-out infinite;
+}
+
+.hero-image img {
+  max-width: 500px;
+  width: 85%;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* Efek melayang lembut */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Efek napas (zoom lembut) */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
         .blob{position:absolute;inset:auto 0 0 0;margin:auto;width:82%;height:58%;background:#3B2C71;border-radius:28px;filter:blur(.5px)}
         .photo{position:relative;border-radius:20px;max-width:100%;height:auto}
 
@@ -74,6 +109,7 @@
             <section>
                 <h1>Selamat Datang,<br>Peserta Magang<br>Diskominfo Garut</h1>
                 <p>
+            
                     Portal presensi ini didesain untuk mendukung perjalanan profesional Anda. Hanya dengan beberapa klik, Anda dapat memastikan kehadiran terekam, menjaga disiplin, dan fokus sepenuhnya pada pengembangan skill Anda. Disiplin adalah kunci untuk menguasai teknologi. Mari wujudkan potensi Anda!
                 </p>
                 <div class="cta">
@@ -90,6 +126,9 @@
                     @endauth
                 </div>
             </section>
+            <aside class="hero-image">
+                <img class="photo" src="{{ asset('img/group-11.png') }}" alt="Ilustrasi Peserta Magang" />
+            </aside>
         </main>
     </div>
 </body>

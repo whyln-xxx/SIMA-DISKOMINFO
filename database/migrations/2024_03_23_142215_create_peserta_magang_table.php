@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('jobtrain_id')->constrained('jobtrain', 'id');
             $table->string('nama_lengkap');
             $table->string('foto')->nullable();
-            $table->string('jurusan');
+            $table->string('pendidikan');
             $table->string('telepon');
             $table->string('email')->unique();
             $table->string('password');

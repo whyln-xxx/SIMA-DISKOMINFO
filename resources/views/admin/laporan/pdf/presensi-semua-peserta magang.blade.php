@@ -117,7 +117,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Nama Peserta Magang / NPM</th>
-                    <th>Jurusan / JobTrain</th>
+                    <th>Pendidikan / JobTrain</th>
                     <th>Jumlah Kehadiran</th>
                     <th>Jumlah Terlambat</th>
                 </tr>
@@ -132,7 +132,7 @@
                             {{ $item->nama_peserta_magang }} - {{ $item->npm }}
                         </td>
                         <td>
-                            {{ $item->jurusan_peserta_magang }} - {{ $item->nama_jobtrain }}
+                            {{ $item->pendidikan_peserta_magang }} - {{ $item->nama_jobtrain }}
                         </td>
                         <td>
                             {{ $item->total_kehadiran }}
