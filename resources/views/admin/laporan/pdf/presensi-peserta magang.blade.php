@@ -195,7 +195,7 @@
                             @if ($item->jam_masuk > Carbon\Carbon::make("07:30:00")->format("H:i:s"))
                                 @php
                                     $masuk = Carbon\Carbon::make($item->jam_masuk);
-                                    $batas = Carbon\Carbon::make("07:45:00");
+                                    $batas = Carbon\Carbon::make($jamKerja->jam_masuk);
                                     $diff = $masuk->diff($batas);
                                     if ($diff->format("%h") != 0) {
                                         $selisih = $diff->format("%h jam %I menit");

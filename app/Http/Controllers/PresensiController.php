@@ -57,7 +57,7 @@ class PresensiController extends Controller
         $longtitudeUser = $lokasiUser[1];
 
         $jarak = round($this->validation_radius_presensi($langtitudeKantor, $longtitudeKantor, $langtitudeUser, $longtitudeUser), 2);
-        if ($jarak > 33) {
+        if ($jarak > 100) {
             return response()->json([
                 'status' => 500,
                 'success' => false,
@@ -92,7 +92,7 @@ class PresensiController extends Controller
                 "updated_at" => Carbon::now(),
             ];
             $store = DB::table('presensi')
-                ->where('pmk', auth()->guard('peserta_magang')->user()->npm)
+                ->where('npm', auth()->guard('peserta_magang')->user()->npm)
                 ->where('tanggal_presensi', date('Y-m-d'))
                 ->update($data);
         }

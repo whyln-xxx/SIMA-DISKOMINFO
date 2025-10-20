@@ -19,7 +19,7 @@
             <div>
                 <a href="/">
     <img 
-        src="{{ asset('img/admin.svg') }}" 
+        src="{{ asset('img/admin 3.svg') }}" 
         alt="SIMA DISKOMINFO Logo" 
         class="w-40 h-40"
     />

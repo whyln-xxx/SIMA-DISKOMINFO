@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
         LokasiKantor::create([
             'kota' => 'Tenetur Nostrum',
             'alamat' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium, vero.',
-            'latitude' => -7.313151173243561,
-            'longitude' => 112.72715491471567,
+            'latitude' => -7.20997039964754,
+            'longitude' => 107.869976672753927,
             'radius' => 33,
             'is_used' => true,
         ]);

@@ -8,7 +8,7 @@
                         document.write(new Date().getFullYear() + ",");
                     </script>
                     made with <i class="ri-heart-fill text-red-500"></i> by
-                    <a href="" class="font-semibold text-slate-700 dark:text-white" target="_blank">4 TRIO</a>
+                    <a href="" class="font-semibold text-slate-700 dark:text-white" target="_blank"></a>
                     for a better web.
                 </div>
             </div>
